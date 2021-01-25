@@ -8,5 +8,6 @@ namespace GtLibHelper.ViewModel
 {
     public class GitLibHelperViewModel : ViewModelBase
     {
+
     }
 }
