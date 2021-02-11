@@ -13,7 +13,10 @@ namespace GtLibHelper.GtLibClasses
             this.Type = "Summation";
             this.NeededHeader = "include \"summation.hpp\"";
             this.Text = $"class {name}" + " : public Summation<A,T>\r\n" +
-                "{\r\n" +
+                "{ \r\n" +
+                "private: \r\n" +
+                "\r\n" +
+                "public: \r\n" +
                 "T func(const A& e) const override\r\n" +
                 "{\r\n" +
                 "   \r\n" +

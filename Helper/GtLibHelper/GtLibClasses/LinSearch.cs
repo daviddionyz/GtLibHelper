@@ -14,6 +14,9 @@ namespace GtLibHelper.GtLibClasses
             this.NeededHeader = "include \"linsearch.hpp\"";
             this.Text = $"class {name}" + " : public LinSearch<A>\r\n" +
                 "{ \r\n" +
+                "private: \r\n" +
+                "\r\n" +
+                "public: \r\n" +
                 "   bool cond(const A& e) const override {\r\n" +
                 "   \r\n" +
                 "   }\r\n" +
