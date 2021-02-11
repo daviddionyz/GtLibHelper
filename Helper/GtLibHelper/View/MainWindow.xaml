@@ -6,7 +6,38 @@
         xmlns:local="clr-namespace:GtLibHelper"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid ShowGridLines="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <DockPanel VerticalAlignment="Top" HorizontalAlignment="Center">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="File">
+                    <MenuItem Header="New Project" />
+                    <MenuItem Header="Open Project" />
+                    <MenuItem Header="Save Project" />
+                    <Separator />
+                    <MenuItem Header="Exit" />
+                </MenuItem>
+            </Menu>
+        </DockPanel>
 
+        <DockPanel HorizontalAlignment="Center" Grid.Column="3">
+            <Button DockPanel.Dock="Top" Height="30"  Name="Enumerator" Content="Enumerator"/>
+            <Button DockPanel.Dock="Top" Height="30"  Name="IntervalEnumerator" Content="Interval Enumerator"/>
+            <Button DockPanel.Dock="Top" Height="30"  Name="LinSearch" Content="Lin Search"/>
+            <Button DockPanel.Dock="Top" Height="30"  Name="Selection" Content="Selection"/>
+            <Button DockPanel.Dock="Top" Height="30"  Name="Summnation" Content="Summnation"/>
+        </DockPanel>
+        <DockPanel Grid.Column="3" Grid.Row="2">
+            <Button DockPanel.Dock="Bottom" Height="30" Name="Save" Content="Save"/>
+            <Button DockPanel.Dock="Bottom" Height="30" Name="Run" Content="Run"/>
+        </DockPanel>
     </Grid>
 </Window>
