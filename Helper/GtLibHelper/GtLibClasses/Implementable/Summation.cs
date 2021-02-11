@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GtLibHelper.GtLibClasses
+namespace GtLibHelper.GtLibClasses.Implementable
 {
     public class Summation : AbstractLibClass
     {
@@ -17,18 +17,10 @@ namespace GtLibHelper.GtLibClasses
                 "private: \r\n" +
                 "\r\n" +
                 "public: \r\n" +
-                "T func(const A& e) const override\r\n" +
-                "{\r\n" +
-                "   \r\n" +
-                "}\r\n" +
-                "T netural() const override\r\n" +
-                "{\r\n" +
-                "   \r\n" +
-                "}\r\n" +
-                "T add( const A& a, const A& b) const override\r\n" +
-                "{\r\n" +
-                "   \r\n" +
-                "}\r\n";
+                "T func(const A& e) const override {}\r\n" +
+                "T netural() const override {}\r\n" +
+                "T add( const A& a, const A& b) const override {}\r\n" +
+                "} \r\n";
         }
     }
 }

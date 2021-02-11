@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GtLibHelper.GtLibClasses
+namespace GtLibHelper.GtLibClasses.Implementable
 {
     public class Selection : AbstractLibClass 
     {
@@ -19,7 +19,6 @@ namespace GtLibHelper.GtLibClasses
                 "protected: \r\n" +
                 "   void init() override final {}\r\n" +
                 "   void body(const T& e) override final {}\r\n" +
-                "   \r\n" +
                 "   \r\n" +
                 "public: \r\n" +
                 "   \r\n" +

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GtLibHelper.GtLibClasses
+namespace GtLibHelper.GtLibClasses.Implementable
 {
     public class Enumerator : AbstractLibClass
     {

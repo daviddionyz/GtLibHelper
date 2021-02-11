@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GtLibHelper.GtLibClasses
+namespace GtLibHelper.GtLibClasses.Implementable
 {
     public class LinSearch : AbstractLibClass
     {
@@ -17,9 +17,7 @@ namespace GtLibHelper.GtLibClasses
                 "private: \r\n" +
                 "\r\n" +
                 "public: \r\n" +
-                "   bool cond(const A& e) const override {\r\n" +
-                "   \r\n" +
-                "   }\r\n" +
+                "   bool cond(const A& e) const override {}\r\n" +
                 "}\r\n";
         }
     }
