@@ -6,9 +6,8 @@ namespace GtLibHelper.GtLibClasses.Implementable
 {
     public class Counting : AbstractLibClass
     {
-        Counting(int ID, string name)
+        Counting(string name)
         {
-            this.ID = ID;
             this.Name = name;
             this.Type = "Counting";
             this.NeededHeader = "include \"counting.hpp\"";

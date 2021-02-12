@@ -13,5 +13,19 @@ namespace GtLibHelper
     /// </summary>
     public partial class App : Application
     {
+        private GtLibHelperViewModel viewModel;
+        private MainWindow mainWindow;
+
+        public App(){
+            //view model part
+            viewModel = new GtLibHelperViewModel();
+
+            //main window part
+            mainWindow = new MainWindow();
+
+            //events handeling part
+
+            mainWindow.show
+        }
     }
 }

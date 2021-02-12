@@ -6,9 +6,8 @@ namespace GtLibHelper.GtLibClasses.Implementable
 {
     public class Summation : AbstractLibClass
     {
-        public Summation(int ID, string name)
+        public Summation(string name)
         {
-            this.ID = ID;
             this.Name = name;
             this.Type = "Summation";
             this.NeededHeader = "include \"summation.hpp\"";

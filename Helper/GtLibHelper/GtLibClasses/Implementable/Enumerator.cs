@@ -6,9 +6,8 @@ namespace GtLibHelper.GtLibClasses.Implementable
 {
     public class Enumerator : AbstractLibClass
     {
-        Enumerator(int ID, string name)
+        Enumerator(string name)
         {
-            this.ID = ID;
             this.Name = name;
             this.Type = "Enumerator";
             this.NeededHeader = "include \"enumerator.hpp\"";
@@ -22,8 +21,6 @@ namespace GtLibHelper.GtLibClasses.Implementable
                 "   bool end() const     {} \r\n" +
                 "   T current() const {} \r\n" +
                 "};\r\n";
-
-
         }
     }
     

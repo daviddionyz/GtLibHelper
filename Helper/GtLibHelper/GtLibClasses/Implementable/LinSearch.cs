@@ -6,9 +6,8 @@ namespace GtLibHelper.GtLibClasses.Implementable
 {
     public class LinSearch : AbstractLibClass
     {
-        public LinSearch(int ID, string name)
+        public LinSearch(string name)
         {
-            this.ID = ID;
             this.Name = name;
             this.Type = "LinSearch";
             this.NeededHeader = "include \"linsearch.hpp\"";

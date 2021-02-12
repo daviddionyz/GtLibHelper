@@ -6,9 +6,8 @@ namespace GtLibHelper.GtLibClasses.Implementable
 {
     public class MaxSearch : AbstractLibClass
     {
-        public MaxSearch(int ID, string name)
+        public MaxSearch(string name)
         {
-            this.ID = ID;
             this.Name = name;
             this.Type = "MaxSearch";
             this.NeededHeader = "include \"maxsearch.hpp\"";

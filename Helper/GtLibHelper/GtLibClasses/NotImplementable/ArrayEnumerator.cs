@@ -7,10 +7,8 @@ namespace GtLibHelper.GtLibClasses.NotImplementable
     public class ArrayEnumerator : AbstractLibClass
     {
 
-
-        ArrayEnumerator(int ID, string name)
+        ArrayEnumerator(string name)
         {
-            this.ID = ID;
             this.Name = name;
             this.Type = "ArrayEnumerator";
             this.NeededHeader = "include \"arrayenumerator.hpp\"";

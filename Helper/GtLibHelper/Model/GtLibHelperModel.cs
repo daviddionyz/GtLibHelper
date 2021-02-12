@@ -6,6 +6,6 @@ namespace GtLibHelper.Model
 {
     public class GtLibHelperModel
     {
-
+            
     }
 }

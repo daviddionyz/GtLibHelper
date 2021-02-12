@@ -6,9 +6,8 @@ namespace GtLibHelper.GtLibClasses.Implementable
 {
     public class Selection : AbstractLibClass 
     {
-        public Selection(int ID, String name)
+        public Selection(String name)
         {
-            this.ID = ID;
             this.Name = name;
             this.Type = "Selection";
             this.NeededHeader = "include \"selection.hpp\"";
