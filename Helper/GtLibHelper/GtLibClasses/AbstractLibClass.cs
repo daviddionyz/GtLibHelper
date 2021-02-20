@@ -8,7 +8,6 @@ namespace GtLibHelper.GtLibClasses
     {
         public string Type { get; set; }
         public string Name { get; set; }
-        //maybe not necessery 
         public string NeededHeader { get; set; }
         public string Text { get; set; }
     }

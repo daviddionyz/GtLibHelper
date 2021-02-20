@@ -6,7 +6,7 @@ namespace GtLibHelper.GtLibClasses.NotImplementable
 {
     public class SeqInFileEnumerator : AbstractLibClass
     {
-        SeqInFileEnumerator(string name)
+        public SeqInFileEnumerator(string name)
         {
             this.Name = name;
             this.Type = "SeqInFileEnumerator";

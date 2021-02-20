@@ -6,8 +6,7 @@ namespace GtLibHelper.GtLibClasses.NotImplementable
 {
     public class ArrayEnumerator : AbstractLibClass
     {
-
-        ArrayEnumerator(string name)
+        public ArrayEnumerator(string name)
         {
             this.Name = name;
             this.Type = "ArrayEnumerator";

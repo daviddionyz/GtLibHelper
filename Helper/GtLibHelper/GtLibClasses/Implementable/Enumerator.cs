@@ -6,7 +6,7 @@ namespace GtLibHelper.GtLibClasses.Implementable
 {
     public class Enumerator : AbstractLibClass
     {
-        Enumerator(string name)
+        public Enumerator(string name)
         {
             this.Name = name;
             this.Type = "Enumerator";

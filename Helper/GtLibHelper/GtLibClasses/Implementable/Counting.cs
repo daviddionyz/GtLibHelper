@@ -6,7 +6,7 @@ namespace GtLibHelper.GtLibClasses.Implementable
 {
     public class Counting : AbstractLibClass
     {
-        Counting(string name)
+        public Counting(string name)
         {
             this.Name = name;
             this.Type = "Counting";

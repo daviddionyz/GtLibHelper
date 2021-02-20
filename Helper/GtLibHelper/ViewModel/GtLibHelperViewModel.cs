@@ -1,68 +1,66 @@
-﻿using System;
+﻿using GtLibHelper.GtLibClasses;
+using GtLibHelper.GtLibClasses.Implementable;
+using GtLibHelper.GtLibClasses.NotImplementable;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace GtLibHelper.ViewModel
 {
     public class GtLibHelperViewModel : ViewModelBase
-    {   
+    {
         private List<AbstractLibClass> libClasses;
 
-        public GtLibHelperViewModel(){
-            libClasses = new List<AbstractLibClass>;
+        public GtLibHelperViewModel() {
+            libClasses = new List<AbstractLibClass>();
         }
 
-        
-        private bool checkTheNameIsFree(String name){
-            for(var class : libClasses){
-                if(class.name == name)
+
+        private bool checkTheNameIsFree(String name) {
+            foreach (var gtLibClass in libClasses){
+                if(gtLibClass.Name == name)
                     return false;
             }
 
             return true;
         }
 
-
         //main and struct is missing
         public void createNewLibClass(String name, String type){
             
             switch(type){
                 case "Counting":
-                    libClasses.add(new Counting(name));
+                    libClasses.Add(new Counting(name));
                     break;
                 case "Enumerator":
-                    libClasses.add(new Enumerator(name));
+                    libClasses.Add(new Enumerator(name));
                     break;
                 case "LinSearch":
-                    libClasses.add(new LinSearch(name));
+                    libClasses.Add(new LinSearch(name));
                     break;
                 case "MaxSearch":
-                    libClasses.add(new MaxSearch(name));
+                    libClasses.Add(new MaxSearch(name));
                     break;
                 case "Selection":
-                    libClasses.add(new Selection(name));
+                    libClasses.Add(new Selection(name));
                     break;
                 case "Summation":
-                    libClasses.add(new Summation(name));
+                    libClasses.Add(new Summation(name));
                     break;
                 case "ArrayEnumerator":
-                    libClasses.add(new ArrayEnumerator(name));
+                    libClasses.Add(new ArrayEnumerator(name));
                     break;
                 case "IntervalEnumerator":
-                    libClasses.add(new IntervalEnumerator(name));
+                    libClasses.Add(new IntervalEnumerator(name));
                     break;
                 case "SeqInFileEnumerator":
-                    libClasses.add(new SeqInFileEnumerator(name));
+                    libClasses.Add(new SeqInFileEnumerator(name));
                     break;
                 case "StringStreamEnumerator":
-                    libClasses.add(new StringStreamEnumerator(name));
+                    libClasses.Add(new StringStreamEnumerator(name));
                     break;
 
             }
         }
-
-
-
-
     }
 }

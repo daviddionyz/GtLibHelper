@@ -6,7 +6,7 @@ namespace GtLibHelper.GtLibClasses.NotImplementable
 {
     public class StringStreamEnumerator : AbstractLibClass
     {
-        StringStreamEnumerator(string name)
+        public StringStreamEnumerator(string name)
         {
             this.Name = name;
             this.Type = "StringStreamEnumerator";

@@ -6,7 +6,7 @@ namespace GtLibHelper.GtLibClasses.NotImplementable
 {
     public class IntervalEnumerator : AbstractLibClass
     {
-        IntervalEnumerator(string name)
+        public IntervalEnumerator(string name)
         {
             this.Name = name;
             this.Type = "IntervalEnumerator";

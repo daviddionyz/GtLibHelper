@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GtLibHelper.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -25,7 +26,7 @@ namespace GtLibHelper
 
             //events handeling part
 
-            mainWindow.show
+            
         }
     }
 }
