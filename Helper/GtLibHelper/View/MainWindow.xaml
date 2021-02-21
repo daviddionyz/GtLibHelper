@@ -13,11 +13,12 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <DockPanel VerticalAlignment="Top" HorizontalAlignment="Center">
+        <DockPanel VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="0">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="File">
                     <MenuItem Header="New Project" />
@@ -29,8 +30,8 @@
             </Menu>
         </DockPanel>
         <!--Implementabel classes-->
-        <DockPanel HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0">
-            <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="Selection" Content="Selection"/>
+        <DockPanel HorizontalAlignment="Center" Grid.Column="2" Grid.Row="1">
+            <Button DockPanel.Dock="Top" Height="30" Width="120" Name="Selection" Content="Selection"/>
             <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="Summnation" Content="Summnation"/>
             <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="LinSearch" Content="Lin search"/>
             <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="MaxSearch" Content="Max search"/>
@@ -38,14 +39,14 @@
             <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="Enumerator" Content="Enumerator"/>
         </DockPanel>
         <!--Just useabel classes-->
-        <DockPanel Grid.Column="2" Grid.Row="1">
-            <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="ArrayEnumerator" Content="Array enumerator"/>
+        <DockPanel Grid.Column="2" Grid.Row="2">
+            <Button DockPanel.Dock="Top" Height="30" Width="120" Name="ArrayEnumerator" Content="Array enumerator"/>
             <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="StringEnumerator" Content="String enumerator"/>
             <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="IntervalEnumerator" Content="Interval enumerator"/>
             <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="SeqInFileEnumerator" Content="Seq in file Enumerator"/>
         </DockPanel>
         <!--Save and Run section-->
-        <DockPanel Grid.Column="2" Grid.Row="2">
+        <DockPanel Grid.Column="2" Grid.Row="3">
             <Button DockPanel.Dock="Bottom" Height="30" Name="Save" Content="Save"/>
             <Button DockPanel.Dock="Bottom" Height="30" Name="Run" Content="Run"/>
         </DockPanel>
