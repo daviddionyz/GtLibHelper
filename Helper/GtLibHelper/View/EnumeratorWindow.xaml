@@ -1,0 +1,47 @@
+﻿<Window x:Class="GtLibHelper.View.EnumeratorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GtLibHelper.View"
+        mc:Ignorable="d"
+        Title="EnumeratorWindow" MinHeight="450" MinWidth="250" MaxHeight="500" MaxWidth="250">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--text box for name and label-->
+        <!--to detect the enter was pressed and make newline it is need bit workaround-->
+        <Label Name="labelForName" 
+               Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">Please give the name of class</Label>
+        <TextBox Name="Name"
+                 Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                 Height="20" Width="250"
+                 AcceptsTab="False" AcceptsReturn="True" TextWrapping="Wrap"></TextBox>
+        
+        <!--TODO-->
+        <!--radio buttons for A and T templeta-->
+        
+        <!--write out text maybe if i can work it out-->
+        <TextBox Name="mainText" 
+                 Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                 Height="200" Width="250"
+                 AcceptsTab="True"></TextBox>
+        
+        <!--buttons ok and cancel--> 
+        <Button Name="Ok" 
+                Grid.Column="0" Grid.Row="3"
+                Width="50" Height="20" >Ok</Button>
+        <Button Name="Cancel"
+                Grid.Column="1" Grid.Row="3"
+                Width="50" Height="20" >Cancel</Button>
+    </Grid>
+</Window>

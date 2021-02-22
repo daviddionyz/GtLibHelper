@@ -23,6 +23,7 @@ namespace GtLibHelper
 
             //main window part
             mainWindow = new MainWindow();
+            mainWindow.Show();
 
             //events handeling part
 

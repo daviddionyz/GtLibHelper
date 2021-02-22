@@ -59,7 +59,6 @@ namespace GtLibHelper.ViewModel
                 case "StringStreamEnumerator":
                     libClasses.Add(new StringStreamEnumerator(name));
                     break;
-
             }
         }
     }

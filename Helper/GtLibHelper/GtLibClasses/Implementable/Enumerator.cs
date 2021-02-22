@@ -5,7 +5,7 @@ using System.Text;
 namespace GtLibHelper.GtLibClasses.Implementable
 {
     public class Enumerator : AbstractLibClass
-    {
+    {   
         public Enumerator(string name)
         {
             this.Name = name;

@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using GtLibHelper.GtLibClasses.Implementable;
+using GtLibHelper.View;
 
 namespace GtLibHelper
 {
@@ -23,6 +12,21 @@ namespace GtLibHelper
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Selection_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Enumerator_Click(object sender, RoutedEventArgs e)
+        {
+            EnumeratorWindow myEnumWindow = new EnumeratorWindow();
+
+            myEnumWindow.setMainTextBox("az osztaly \n\rleiro cuc\n\rca");
+
+            myEnumWindow.ShowDialog();
+
         }
     }
 }

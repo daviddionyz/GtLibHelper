@@ -31,12 +31,12 @@
         </DockPanel>
         <!--Implementabel classes-->
         <DockPanel HorizontalAlignment="Center" Grid.Column="2" Grid.Row="1">
-            <Button DockPanel.Dock="Top" Height="30" Width="120" Name="Selection" Content="Selection"/>
+            <Button DockPanel.Dock="Top" Height="30" Width="120" Name="Selection" Content="Selection" Click="Selection_Click"/>
             <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="Summnation" Content="Summnation"/>
             <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="LinSearch" Content="Lin search"/>
             <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="MaxSearch" Content="Max search"/>
             <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="Counting" Content="Counting"/>
-            <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="Enumerator" Content="Enumerator"/>
+            <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="Enumerator" Content="Enumerator" Click="Enumerator_Click"/>
         </DockPanel>
         <!--Just useabel classes-->
         <DockPanel Grid.Column="2" Grid.Row="2">
