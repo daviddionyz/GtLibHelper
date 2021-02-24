@@ -16,19 +16,38 @@ namespace GtLibHelper.ViewModel
         }
 
 
-        private bool checkTheNameIsFree(String name) {
+        private Tuple<Bool,String> checkTheNameIsFree(String name) {
+            Tuple<Bool,String> result  = new Tuple<Bool,String>;
+
             foreach (var gtLibClass in libClasses){
                 if(gtLibClass.Name == name)
-                    return false;
+                    result.First = false;
+                    result.Second = "A név már foglalt";
+                    return result;
             }
 
-            return true;
+//            TODO:
+//            regular expression to check the characters are allowed
+//            Names can contain letters, digits and underscores
+//            Names must begin with a letter or an underscore (_)
+//            Names are case sensitive (myVar and myvar are different variables)
+//            Names cannot contain whitespaces or special characters like !, #, %, etc.
+//            Reserved words (like C++ keywords, such as int) cannot be used as names
+
+
+            result.First = true;
+            result.Second = "Ok";
+            return result;
         }
 
         //main and struct is missing
         public void createNewLibClass(String name, String type){
             
             switch(type){
+                case "Main":
+                    break;
+                case "Struct":
+                    break;
                 case "Counting":
                     libClasses.Add(new Counting(name));
                     break;
