@@ -13,11 +13,11 @@ using System.Windows.Shapes;
 namespace GtLibHelper.View
 {
     /// <summary>
-    /// Interaction logic for EnumeratorWindow.xaml
+    /// Interaction logic for OneParamClassesWindow.xaml
     /// </summary>
-    public partial class EnumeratorWindow : Window
+    public partial class OneParamClassesWindow : Window
     {
-        public EnumeratorWindow()
+        public OneParamClassesWindow()
         {
             InitializeComponent();
         }

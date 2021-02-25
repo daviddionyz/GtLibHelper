@@ -6,7 +6,7 @@ namespace GtLibHelper.GtLibClasses
 {
     public abstract class TwoParamClass : AbstractLibClass
     {
-        public String A {get ; set;}
+        public String Item {get ; set;}
         public String T {get; set;}
     }
 }

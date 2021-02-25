@@ -16,17 +16,37 @@ namespace GtLibHelper
 
         private void Selection_Click(object sender, RoutedEventArgs e)
         {
-            
+            OneParamClassesWindow secondWindow = new OneParamClassesWindow();
+
+            secondWindow.setMainTextBox("az osztaly \n\rleiro cuc\n\rca");
+
+            secondWindow.ShowDialog();
         }
 
         private void Enumerator_Click(object sender, RoutedEventArgs e)
         {
-            EnumeratorWindow myEnumWindow = new EnumeratorWindow();
+            OneParamClassesWindow secondWindow = new OneParamClassesWindow();
 
-            myEnumWindow.setMainTextBox("az osztaly \n\rleiro cuc\n\rca");
+            secondWindow.setMainTextBox("az osztaly \n\rleiro cuc\n\rca");
 
-            myEnumWindow.ShowDialog();
+            secondWindow.ShowDialog();
 
+        }
+
+        private void Counting_Click(object sender, RoutedEventArgs e)
+        {
+            OneParamClassesWindow secondWindow = new OneParamClassesWindow();
+
+            secondWindow.setMainTextBox("az osztaly \n\rleiro cuc\n\rca");
+
+            secondWindow.ShowDialog();
+        }
+
+        private void Summnation_Click(object sender, RoutedEventArgs e)
+        {
+            TwoParamClassesWindow secondWindow = new TwoParamClassesWindow();
+
+            secondWindow.ShowDialog();
         }
     }
 }

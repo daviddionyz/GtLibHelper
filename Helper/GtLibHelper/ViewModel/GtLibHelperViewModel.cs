@@ -15,15 +15,12 @@ namespace GtLibHelper.ViewModel
             libClasses = new List<AbstractLibClass>();
         }
 
-
-        private Tuple<Bool,String> checkTheNameIsFree(String name) {
-            Tuple<Bool,String> result  = new Tuple<Bool,String>;
+        private Tuple<bool, string> checkTheNameIsFree(string name) {
+            
 
             foreach (var gtLibClass in libClasses){
                 if(gtLibClass.Name == name)
-                    result.First = false;
-                    result.Second = "A név már foglalt";
-                    return result;
+                    return new Tuple<bool, string>(false, "A név már foglalt") ;
             }
 
 //            TODO:
@@ -34,10 +31,7 @@ namespace GtLibHelper.ViewModel
 //            Names cannot contain whitespaces or special characters like !, #, %, etc.
 //            Reserved words (like C++ keywords, such as int) cannot be used as names
 
-
-            result.First = true;
-            result.Second = "Ok";
-            return result;
+            return new Tuple<bool, string>(true, "Ok");
         }
 
         //main and struct is missing

@@ -6,6 +6,6 @@ namespace GtLibHelper.GtLibClasses
 {
     public abstract class OneParamClass : AbstractLibClass
     {
-        public String A {get ; set ;}
+        public String Item {get ; set ;}
     }
 }
