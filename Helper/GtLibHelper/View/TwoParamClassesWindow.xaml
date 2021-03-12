@@ -25,7 +25,6 @@
         </Grid.RowDefinitions>
 
         <!--text box for name and label-->
-        <!--to detect the enter was pressed and make newline it is need bit workaround-->
         <Label Name="labelForName" 
                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">Please give the name of class</Label>
         <TextBox Name="Name"
@@ -46,20 +45,18 @@
                    Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"
                    Height="20" Width="250"></TextBox>
 
-        <!--write out text maybe if i can work it out doesn't accept enter-->
-        <!--to detect the enter was pressed and make newline it is need bit workaround-->
-        <TextBox Name="mainText" 
-                 Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2"
-                 Height="200" Width="250" MaxHeight="200" MaxWidth="250"
-                 AcceptsTab="True" TextWrapping="Wrap"></TextBox>
+        <TextBox Name="mainText" IsReadOnly="False"
+                 Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left"
+                 Height="200" Width="235" MaxHeight="200" MaxWidth="235"
+                 AcceptsTab="True" AcceptsReturn="True" TextWrapping="Wrap"></TextBox>
 
         <!--buttons ok and cancel-->
         <Button Name="Ok" 
                 Grid.Row="7" Grid.Column="0"
-                Width="50" Height="20" >Ok</Button>
+                Width="50" Height="20" Click="Ok_Click" >Ok</Button>
         <Button Name="Cancel"
                 Grid.Row="7" Grid.Column="1"
-                Width="50" Height="20" >Cancel</Button>
+                Width="50" Height="20" Click="Cancel_Click" >Cancel</Button>
 
         <!--label for to give feed back about the given class name-->
         <Label Name="feedBackLabel"

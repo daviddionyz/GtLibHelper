@@ -37,7 +37,7 @@
             <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="Counting" Content="Counting" Click="Counting_Click"/>
             <!--2 param classes-->
             <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="Summnation" Content="Summnation" Click="Summnation_Click"/>
-            <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="LinSearch" Content="Lin search"/>
+            <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="LinSearch" Content="Lin search" Click="LinSearch_Click"/>
             <!--3 param classes-->
             <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="MaxSearch" Content="Max search"/>
         </DockPanel>
@@ -53,5 +53,9 @@
             <Button DockPanel.Dock="Bottom" Height="30" Name="Save" Content="Save"/>
             <Button DockPanel.Dock="Bottom" Height="30" Name="Run" Content="Run"/>
         </DockPanel>
+        <Frame Content="Frame"
+               Grid.Row="1" Grid.RowSpan="3"
+               Grid.Column="0" Grid.ColumnSpan="2"/>
+
     </Grid>
 </Window>

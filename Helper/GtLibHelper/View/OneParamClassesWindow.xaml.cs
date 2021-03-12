@@ -17,14 +17,28 @@ namespace GtLibHelper.View
     /// </summary>
     public partial class OneParamClassesWindow : Window
     {
+
+        public event EventHandler okButtonPushed;
         public OneParamClassesWindow()
         {
             InitializeComponent();
+
+            
         }
 
         public void setMainTextBox(String text) 
         {
             mainText.Text = text;
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Ok_Click(object sender, RoutedEventArgs e)
+        {
+            okButtonPushed?.Invoke(this, new EventArgs());
         }
     }
 }

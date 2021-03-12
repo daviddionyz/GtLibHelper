@@ -17,9 +17,20 @@ namespace GtLibHelper.View
     /// </summary>
     public partial class TwoParamClassesWindow : Window
     {
+        public event EventHandler okButtonPushed;
         public TwoParamClassesWindow()
         {
             InitializeComponent();
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Ok_Click(object sender, RoutedEventArgs e)
+        {
+            okButtonPushed?.Invoke(this, new EventArgs());
         }
     }
 }

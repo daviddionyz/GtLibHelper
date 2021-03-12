@@ -1,6 +1,8 @@
 ﻿using System.Windows;
 using GtLibHelper.GtLibClasses.Implementable;
 using GtLibHelper.View;
+using GtLibHelper.Model;
+using System;
 
 namespace GtLibHelper
 {
@@ -9,6 +11,8 @@ namespace GtLibHelper
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        public delegate NameCheckEventArgs NameChanged();
         public MainWindow()
         {
             InitializeComponent();
@@ -18,16 +22,17 @@ namespace GtLibHelper
         {
             OneParamClassesWindow secondWindow = new OneParamClassesWindow();
 
-            secondWindow.setMainTextBox("az osztaly \n\rleiro cuc\n\rca");
+            secondWindow.okButtonPushed += okButtonPushed_MainView;
 
             secondWindow.ShowDialog();
         }
+
 
         private void Enumerator_Click(object sender, RoutedEventArgs e)
         {
             OneParamClassesWindow secondWindow = new OneParamClassesWindow();
 
-            secondWindow.setMainTextBox("az osztaly \n\rleiro cuc\n\rca");
+            secondWindow.okButtonPushed += okButtonPushed_MainView;
 
             secondWindow.ShowDialog();
 
@@ -37,7 +42,7 @@ namespace GtLibHelper
         {
             OneParamClassesWindow secondWindow = new OneParamClassesWindow();
 
-            secondWindow.setMainTextBox("az osztaly \n\rleiro cuc\n\rca");
+            secondWindow.okButtonPushed += okButtonPushed_MainView;
 
             secondWindow.ShowDialog();
         }
@@ -46,7 +51,23 @@ namespace GtLibHelper
         {
             TwoParamClassesWindow secondWindow = new TwoParamClassesWindow();
 
+            secondWindow.okButtonPushed += okButtonPushed_MainView;
+
             secondWindow.ShowDialog();
         }
+        private void LinSearch_Click(object sender, RoutedEventArgs e)
+        {
+            TwoParamClassesWindow secondWindow = new TwoParamClassesWindow();
+
+            secondWindow.okButtonPushed += okButtonPushed_MainView;
+
+            secondWindow.ShowDialog();
+        }
+
+        private void okButtonPushed_MainView(object sender, EventArgs e) 
+        {
+            //todo get out info and reise event
+        }
+
     }
 }
