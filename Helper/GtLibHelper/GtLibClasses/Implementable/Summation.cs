@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GtLibHelper.GtLibClasses.Implementable
 {
-    public class Summation : AbstractLibClass
+    public class Summation : TwoParamClass
     {
         public Summation(string name)
         {

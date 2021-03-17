@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GtLibHelper.GtLibClasses.Implementable
 {
-    public class Selection : AbstractLibClass 
+    public class Selection : OneParamClass 
     {
         public Selection(String name)
         {

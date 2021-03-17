@@ -14,20 +14,27 @@ namespace GtLibHelper
     /// </summary>
     public partial class App : Application
     {
-        private GtLibHelperViewModel viewModel;
-        private MainWindow mainWindow;
+        private GtLibHelperViewModel _viewModel;
+        private MainWindow _mainWindow;
 
         public App(){
             //view model part
-            viewModel = new GtLibHelperViewModel();
+            _viewModel = new GtLibHelperViewModel();
 
             //main window part
-            mainWindow = new MainWindow();
-            mainWindow.Show();
+            _mainWindow = new MainWindow();
+            _mainWindow.DataContext = _viewModel;
 
             //events handeling part
-
+            _viewModel.exit += exit_Handler;
             
+            _mainWindow.Show();
+        }
+
+
+        private void exit_Handler(Object sender, EventArgs e) 
+        {
+            _mainWindow.Close();
         }
     }
 }

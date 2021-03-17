@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GtLibHelper.GtLibClasses.Implementable
 {
-    public class Enumerator : AbstractLibClass
+    public class Enumerator : OneParamClass
     {   
         public Enumerator(string name)
         {

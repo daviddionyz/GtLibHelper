@@ -12,62 +12,70 @@ namespace GtLibHelper
     public partial class MainWindow : Window
     {
 
-        public delegate NameCheckEventArgs NameChanged();
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void Selection_Click(object sender, RoutedEventArgs e)
-        {
-            OneParamClassesWindow secondWindow = new OneParamClassesWindow();
+        //private void Selection_Click(object sender, RoutedEventArgs e)
+        //{
+        //    OneParamClassesWindow secondWindow = new OneParamClassesWindow();
 
-            secondWindow.okButtonPushed += okButtonPushed_MainView;
+        //    secondWindow.okButtonPushed += okButtonPushed_MainView;
 
-            secondWindow.ShowDialog();
-        }
+        //    secondWindow.ShowDialog();
+        //}
 
 
-        private void Enumerator_Click(object sender, RoutedEventArgs e)
-        {
-            OneParamClassesWindow secondWindow = new OneParamClassesWindow();
+        //private void Enumerator_Click(object sender, RoutedEventArgs e)
+        //{
+        //    OneParamClassesWindow secondWindow = new OneParamClassesWindow();
 
-            secondWindow.okButtonPushed += okButtonPushed_MainView;
+        //    secondWindow.okButtonPushed += okButtonPushed_MainView;
 
-            secondWindow.ShowDialog();
+        //    secondWindow.ShowDialog();
 
-        }
+        //}
 
-        private void Counting_Click(object sender, RoutedEventArgs e)
-        {
-            OneParamClassesWindow secondWindow = new OneParamClassesWindow();
+        //private void Counting_Click(object sender, RoutedEventArgs e)
+        //{
+        //    OneParamClassesWindow secondWindow = new OneParamClassesWindow();
 
-            secondWindow.okButtonPushed += okButtonPushed_MainView;
+        //    Counting dump = new Counting("");
 
-            secondWindow.ShowDialog();
-        }
+        //    secondWindow.mainText.Text = dump.Text;
+        //    secondWindow.okButtonPushed += okButtonPushed_MainView;
+        //    secondWindow.name.TextChanged += classNameTextBoxChanged;
 
-        private void Summnation_Click(object sender, RoutedEventArgs e)
-        {
-            TwoParamClassesWindow secondWindow = new TwoParamClassesWindow();
+        //    secondWindow.ShowDialog();
+        //}
 
-            secondWindow.okButtonPushed += okButtonPushed_MainView;
+        //private void Summnation_Click(object sender, RoutedEventArgs e)
+        //{
+        //    TwoParamClassesWindow secondWindow = new TwoParamClassesWindow();
 
-            secondWindow.ShowDialog();
-        }
-        private void LinSearch_Click(object sender, RoutedEventArgs e)
-        {
-            TwoParamClassesWindow secondWindow = new TwoParamClassesWindow();
+        //    secondWindow.okButtonPushed += okButtonPushed_MainView;
 
-            secondWindow.okButtonPushed += okButtonPushed_MainView;
+        //    secondWindow.ShowDialog();
+        //}
+        //private void LinSearch_Click(object sender, RoutedEventArgs e)
+        //{
+        //    TwoParamClassesWindow secondWindow = new TwoParamClassesWindow();
 
-            secondWindow.ShowDialog();
-        }
+        //    secondWindow.okButtonPushed += okButtonPushed_MainView;
 
-        private void okButtonPushed_MainView(object sender, EventArgs e) 
-        {
-            //todo get out info and reise event
-        }
+        //    secondWindow.ShowDialog();
+        //}
+
+        //private void classNameTextBoxChanged(object sender, EventArgs e) 
+        //{
+        //    ClassNameChanged?.Invoke(sender,e);
+        //}
+
+        //private void okButtonPushed_MainView(object sender, EventArgs e) 
+        //{
+        //    //todo get out info and reise event
+        //}
 
     }
 }

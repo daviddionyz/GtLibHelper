@@ -53,10 +53,10 @@
         <!--buttons ok and cancel-->
         <Button Name="Ok" 
                 Grid.Row="7" Grid.Column="0"
-                Width="50" Height="20" Click="Ok_Click" >Ok</Button>
+                Width="50" Height="20" >Ok</Button>
         <Button Name="Cancel"
                 Grid.Row="7" Grid.Column="1"
-                Width="50" Height="20" Click="Cancel_Click" >Cancel</Button>
+                Width="50" Height="20" >Cancel</Button>
 
         <!--label for to give feed back about the given class name-->
         <Label Name="feedBackLabel"

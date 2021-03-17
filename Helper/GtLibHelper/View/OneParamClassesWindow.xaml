@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GtLibHelper.View"
         mc:Ignorable="d"
-        Title="Class" MinHeight="380" MinWidth="250" MaxHeight="380" MaxWidth="250">
+        Title="Class" MinHeight="380" MinWidth="300" MaxHeight="380" MaxWidth="300">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -25,33 +25,33 @@
         <!--text box for name and label-->
         <Label Name="labelForName" 
                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">Please give the name of class</Label>
-        <TextBox Name="name"
+        <TextBox Name="name" Text="{Binding ClassName, Mode=TwoWay}"
                  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
                  Height="20" Width="250"></TextBox>
         
         <!--Text box for items-->
         <Label Name="labelForItem"
                Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">Please give the type of the item</Label>
-        <TextBox Name="itemType"
+        <TextBox Name="itemType" Text="{Binding Item, Mode=TwoWay}"
                    Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
                    Height="20" Width="250"></TextBox>
 
 
         <TextBox Name="mainText" IsReadOnly="False"
                  Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left"
-                 Height="200" Width="235" MaxHeight="200" MaxWidth="235"
+                 Height="200" Width="290" MaxHeight="200" MaxWidth="290"
                  AcceptsTab="True" AcceptsReturn="True" TextWrapping="Wrap"></TextBox>
         
-        <!--buttons ok and cancel--> 
-        <Button Name="Ok" 
+        <!--buttons ok and cancel-->
+        <Button Name="Ok" Command="{Binding OkButtonClickedCommand}"
                 Grid.Column="0" Grid.Row="5"
-                Width="50" Height="20" Click="Ok_Click" >Ok</Button>
-        <Button Name="Cancel"
+                Width="50" Height="20" >Ok</Button>
+        <Button Name="Cancel" Command="{Binding CancelButtonClickedCommand}"
                 Grid.Column="1" Grid.Row="5"
-                Width="50" Height="20" Click="Cancel_Click" >Cancel</Button>
+                Width="50" Height="20"  >Cancel</Button>
         
         <!--label for to give feed back about the given class name-->
-        <Label Name="feedBackLabel"
-               Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">asd</Label>
+        <Label Name="feedBackLabel" Content="{Binding FeedBackText}"
+               Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2"></Label>
     </Grid>
 </Window>

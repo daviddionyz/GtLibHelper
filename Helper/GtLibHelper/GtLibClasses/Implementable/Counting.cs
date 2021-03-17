@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GtLibHelper.GtLibClasses.Implementable
 {
-    public class Counting : AbstractLibClass
+    public class Counting : OneParamClass
     {
         public Counting(string name)
         {

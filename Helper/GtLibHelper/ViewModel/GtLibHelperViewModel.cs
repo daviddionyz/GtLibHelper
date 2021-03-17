@@ -3,76 +3,202 @@ using GtLibHelper.GtLibClasses.Implementable;
 using GtLibHelper.GtLibClasses.NotImplementable;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Text;
+using GtLibHelper.View;
 
 namespace GtLibHelper.ViewModel
 {
     public class GtLibHelperViewModel : ViewModelBase
     {
-        private List<AbstractLibClass> libClasses;
+        private String _feedBackText;
+        private String _className;
 
-        public GtLibHelperViewModel() {
-            libClasses = new List<AbstractLibClass>();
+        public event EventHandler exit;
+
+        private List<AbstractLibClass> _libClasses;
+        private AbstractLibClass _currentLibClass;
+
+        private OneParamClassesWindow _oneParamClassesWindow;
+        private TwoParamClassesWindow _twoParamClassesWindow;
+
+        public String ClassName
+        {
+            get { return _className; }
+            set
+            {
+                _className = value;
+                checkTheNameIsFree(_className);
+            }
+        }
+        public String Item { get; set; }
+        public String T { get; set; }
+        public String ClassText { get; set; }
+        public String FeedBackText
+        {
+            get { return _feedBackText; }
+            private set
+            {
+                _feedBackText = value;
+                OnPropertyChanged("FeedBackText");
+            }
         }
 
-        private Tuple<bool, string> checkTheNameIsFree(string name) {
-            
+        public DelegateCommand EnumeratorButtonClickedCommand { get; private set; }
+        public DelegateCommand SelectionButtonClickedCommand { get; private set; }
+        public DelegateCommand CountingButtonClickedCommand { get; private set; }
+        public DelegateCommand SummnationButtonClickedCommand { get; private set; }
+        public DelegateCommand LinSearchButtonClickedCommand { get; private set; }
+        public DelegateCommand MaxSearchButtonClickedCommand { get; private set; }
 
-            foreach (var gtLibClass in libClasses){
-                if(gtLibClass.Name == name)
-                    return new Tuple<bool, string>(false, "A név már foglalt") ;
+        public DelegateCommand ExitButtonCommand { get; private set; }
+
+
+        public DelegateCommand OkButtonClickedCommand { get; private set; }
+        public DelegateCommand CancelButtonClickedCommand { get; private set; }
+
+        public GtLibHelperViewModel()
+        {
+            _libClasses = new List<AbstractLibClass>();
+
+            ExitButtonCommand = new DelegateCommand(param => onExitButton());
+
+            OkButtonClickedCommand = new DelegateCommand(param => onOkButtonClicked());
+            CancelButtonClickedCommand = new DelegateCommand(param => onCancelButtonClicked());
+
+            EnumeratorButtonClickedCommand = new DelegateCommand(param => onEnumeratorCreate());
+
+
+        }
+
+        private void onExitButton()
+        {
+            exit?.Invoke(this, new EventArgs());
+        }
+        private void checkTheNameIsFree(string name)
+        {
+            Regex rex = new Regex("^[a-zA-Z]+$");
+
+            foreach (var gtLibClass in _libClasses)
+                if (gtLibClass.Name == name)
+                {
+                    FeedBackText = "A név már foglalt";
+                    return;
+                }
+
+            if (!rex.IsMatch(name))
+            {
+                FeedBackText = "A név megadás helytelen";
+                return;
             }
 
-//            TODO:
-//            regular expression to check the characters are allowed
-//            Names can contain letters, digits and underscores
-//            Names must begin with a letter or an underscore (_)
-//            Names are case sensitive (myVar and myvar are different variables)
-//            Names cannot contain whitespaces or special characters like !, #, %, etc.
-//            Reserved words (like C++ keywords, such as int) cannot be used as names
-
-            return new Tuple<bool, string>(true, "Ok");
+            FeedBackText = "Ok";
         }
-
         //main and struct is missing
-        public void createNewLibClass(String name, String type){
-            
-            switch(type){
+        public AbstractLibClass createNewLibClass(String name, String type) {
+
+            switch (type) {
+                case "Main":
+                    return null;
+                case "Struct":
+                    return new OwnStruct(name);
+                case "Counting":
+                    return new Counting(name);
+                case "Enumerator":
+                    return new Enumerator(name);
+                case "LinSearch":
+                    return new LinSearch(name);
+                case "MaxSearch":
+                    return new MaxSearch(name);
+                case "Selection":
+                    return new Selection(name);
+                case "Summation":
+                    return new Summation(name);
+                case "ArrayEnumerator":
+                    return new ArrayEnumerator(name);
+                case "IntervalEnumerator":
+                    return new IntervalEnumerator(name);
+                case "SeqInFileEnumerator":
+                    return new SeqInFileEnumerator(name);
+                case "StringStreamEnumerator":
+                    return new StringStreamEnumerator(name);
+            }
+            return null;
+        }
+        private void addCurrentLibClassToList()
+        {
+            switch (_currentLibClass.Type)
+            {
                 case "Main":
                     break;
                 case "Struct":
                     break;
                 case "Counting":
-                    libClasses.Add(new Counting(name));
                     break;
                 case "Enumerator":
-                    libClasses.Add(new Enumerator(name));
+                    Enumerator ownEnum = (Enumerator)_currentLibClass;
+                    ownEnum.Name = ClassName;
+                    ownEnum.Item = Item;
+                    ownEnum.Text = ClassText;
+                    _libClasses.Add(ownEnum);
                     break;
                 case "LinSearch":
-                    libClasses.Add(new LinSearch(name));
                     break;
                 case "MaxSearch":
-                    libClasses.Add(new MaxSearch(name));
                     break;
                 case "Selection":
-                    libClasses.Add(new Selection(name));
                     break;
                 case "Summation":
-                    libClasses.Add(new Summation(name));
                     break;
                 case "ArrayEnumerator":
-                    libClasses.Add(new ArrayEnumerator(name));
                     break;
                 case "IntervalEnumerator":
-                    libClasses.Add(new IntervalEnumerator(name));
                     break;
                 case "SeqInFileEnumerator":
-                    libClasses.Add(new SeqInFileEnumerator(name));
                     break;
                 case "StringStreamEnumerator":
-                    libClasses.Add(new StringStreamEnumerator(name));
                     break;
             }
         }
+        private void onEnumeratorCreate()
+        {
+            //Console.WriteLine("helloo world");
+            _twoParamClassesWindow = null;
+            _oneParamClassesWindow = new OneParamClassesWindow();
+            _oneParamClassesWindow.DataContext = this;
+
+            _currentLibClass = createNewLibClass("", "Enumerator");
+
+            _oneParamClassesWindow.ShowDialog();
+        }
+        private void onOkButtonClicked()
+        {
+            addCurrentLibClassToList();
+            closingSeconderyWindow();
+            resetClassesWindowProperties();
+        }
+        private void onCancelButtonClicked()
+        {
+            closingSeconderyWindow();
+        }
+
+
+        private void closingSeconderyWindow()
+        {
+            if (_oneParamClassesWindow != null)
+                _oneParamClassesWindow.Close();
+            else
+                _twoParamClassesWindow.Close();
+        }
+        private void resetClassesWindowProperties() 
+        {
+            ClassName = "";
+            Item = "";
+            T = "";
+            ClassText = "";
+            FeedBackText = "";
+        }
+
+
     }
 }

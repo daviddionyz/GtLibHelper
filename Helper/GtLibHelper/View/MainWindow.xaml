@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GtLibHelper"
+        xmlns:vm="clr-namespace:GtLibHelper.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid ShowGridLines="True">
@@ -25,21 +26,21 @@
                     <MenuItem Header="Open Project" />
                     <MenuItem Header="Save Project" />
                     <Separator />
-                    <MenuItem Header="Exit" />
+                    <MenuItem Header="Exit" Command="{Binding ExitButtonCommand}"/>
                 </MenuItem>
             </Menu>
         </DockPanel>
         <!--Implementabel classes-->
         <DockPanel HorizontalAlignment="Center" Grid.Column="2" Grid.Row="1">
             <!--1 param classes-->
-            <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="Enumerator" Content="Enumerator" Click="Enumerator_Click"/>
-            <Button DockPanel.Dock="Top" Height="30" Width="120" Name="Selection" Content="Selection" Click="Selection_Click"/>
-            <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="Counting" Content="Counting" Click="Counting_Click"/>
+            <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="Enumerator" Content="Enumerator" Command="{Binding EnumeratorButtonClickedCommand}" />
+            <Button DockPanel.Dock="Top" Height="30" Width="120" Name="Selection" Content="Selection" Command="{Binding SelectionButtonClickedCommand}"/>
+            <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="Counting" Content="Counting" Command="{Binding CountingButtonClickedCommand}"/>
             <!--2 param classes-->
-            <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="Summnation" Content="Summnation" Click="Summnation_Click"/>
-            <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="LinSearch" Content="Lin search" Click="LinSearch_Click"/>
+                <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="Summnation" Content="Summnation" Command="{Binding SummnationButtonClickedCommand}"/>
+            <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="LinSearch" Content="Lin search" Command="{Binding LinSearchButtonClickedCommand}"/>
             <!--3 param classes-->
-            <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="MaxSearch" Content="Max search"/>
+                    <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="MaxSearch" Content="Max search" Command="{Binding MaxSearchButtonClickedCommand}"/>
         </DockPanel>
         <!--Just useabel classes-->
         <DockPanel Grid.Column="2" Grid.Row="2">

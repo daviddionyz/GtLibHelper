@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GtLibHelper.GtLibClasses.Implementable
 {
-    public class LinSearch : AbstractLibClass
+    public class LinSearch : TwoParamClass
     {
         public LinSearch(string name)
         {
