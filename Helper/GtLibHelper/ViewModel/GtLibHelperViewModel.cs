@@ -14,7 +14,7 @@ namespace GtLibHelper.ViewModel
         private String _feedBackText;
         private String _className;
 
-        public event EventHandler exit;
+        public event EventHandler Exit;
 
         private List<AbstractLibClass> _libClasses;
         private AbstractLibClass _currentLibClass;
@@ -28,7 +28,7 @@ namespace GtLibHelper.ViewModel
             set
             {
                 _className = value;
-                checkTheNameIsFree(_className);
+                CheckTheClassName(_className);
             }
         }
         public String Item { get; set; }
@@ -63,19 +63,19 @@ namespace GtLibHelper.ViewModel
 
             ExitButtonCommand = new DelegateCommand(param => onExitButton());
 
-            OkButtonClickedCommand = new DelegateCommand(param => onOkButtonClicked());
-            CancelButtonClickedCommand = new DelegateCommand(param => onCancelButtonClicked());
+            OkButtonClickedCommand = new DelegateCommand(param => OnOkButtonClicked());
+            CancelButtonClickedCommand = new DelegateCommand(param => OnCancelButtonClicked());
 
-            EnumeratorButtonClickedCommand = new DelegateCommand(param => onEnumeratorCreate());
+            EnumeratorButtonClickedCommand = new DelegateCommand(param => OnEnumeratorCreate());
 
 
         }
 
-        private void onExitButton()
+        private void OnExitButton()
         {
-            exit?.Invoke(this, new EventArgs());
+            Exit?.Invoke(this, new EventArgs());
         }
-        private void checkTheNameIsFree(string name)
+        private void CheckTheClassName(string name)
         {
             Regex rex = new Regex("^[a-zA-Z]+$");
 
@@ -95,7 +95,7 @@ namespace GtLibHelper.ViewModel
             FeedBackText = "Ok";
         }
         //main and struct is missing
-        public AbstractLibClass createNewLibClass(String name, String type) {
+        public AbstractLibClass CreateNewLibClass(String name, String type) {
 
             switch (type) {
                 case "Main":
@@ -125,7 +125,7 @@ namespace GtLibHelper.ViewModel
             }
             return null;
         }
-        private void addCurrentLibClassToList()
+        private void AddCurrentLibClassToList()
         {
             switch (_currentLibClass.Type)
             {
@@ -160,37 +160,37 @@ namespace GtLibHelper.ViewModel
                     break;
             }
         }
-        private void onEnumeratorCreate()
+        private void OnEnumeratorCreate()
         {
             //Console.WriteLine("helloo world");
             _twoParamClassesWindow = null;
             _oneParamClassesWindow = new OneParamClassesWindow();
             _oneParamClassesWindow.DataContext = this;
 
-            _currentLibClass = createNewLibClass("", "Enumerator");
+            _currentLibClass = CreateNewLibClass("", "Enumerator");
 
             _oneParamClassesWindow.ShowDialog();
         }
-        private void onOkButtonClicked()
+        private void OnOkButtonClicked()
         {
-            addCurrentLibClassToList();
-            closingSeconderyWindow();
-            resetClassesWindowProperties();
+            AddCurrentLibClassToList();
+            ClosingSeconderyWindow();
+            ResetClassesWindowProperties();
         }
-        private void onCancelButtonClicked()
+        private void OnCancelButtonClicked()
         {
-            closingSeconderyWindow();
+            ClosingSeconderyWindow();
         }
 
 
-        private void closingSeconderyWindow()
+        private void ClosingSeconderyWindow()
         {
             if (_oneParamClassesWindow != null)
                 _oneParamClassesWindow.Close();
             else
                 _twoParamClassesWindow.Close();
         }
-        private void resetClassesWindowProperties() 
+        private void ResetClassesWindowProperties() 
         {
             ClassName = "";
             Item = "";

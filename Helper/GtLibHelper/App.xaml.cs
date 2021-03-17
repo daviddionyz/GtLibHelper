@@ -26,7 +26,7 @@ namespace GtLibHelper
             _mainWindow.DataContext = _viewModel;
 
             //events handeling part
-            _viewModel.exit += exit_Handler;
+            _viewModel.Exit += exit_Handler;
             
             _mainWindow.Show();
         }
