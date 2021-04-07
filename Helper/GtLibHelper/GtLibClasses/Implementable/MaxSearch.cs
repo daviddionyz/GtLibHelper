@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GtLibHelper.GtLibClasses.Implementable
 {
-    public class MaxSearch : AbstractLibClass
+    public class MaxSearch : ThreeParamClass
     {
         public MaxSearch(string name)
         {
@@ -22,6 +22,23 @@ namespace GtLibHelper.GtLibClasses.Implementable
                 "   bool found()   const { return _l;}\r\n" +
                 "   Value opt()    const { return _opt;}\r\n" +
                 "   Item optElem() const { return _optelem;}\r\n" +
+                "}\r\n";
+        }
+
+
+        public override void RefreshText()
+        {
+            this.Text = $"class {Name}" + $" : public MaxSearch<{Item}, {T}, {Compare}>\r\n" +
+                "{ \r\n" +
+                "private: \r\n" +
+                "   \r\n" +
+                "protected: \r\n" +
+                $"   {T} func(const {Item}& e) " + " const override { };\r\n" +
+                $"   bool  cond(const {Item}& e) " + " const override { return true;}\r\n" +
+                "public: \r\n" +
+                "   bool found()   const { return _l;}\r\n" +
+                $"   {T} opt()   " + " const { return _opt;}\r\n" +
+                $"   {Item} optElem() " + "  const { return _optelem;}\r\n" +
                 "}\r\n";
         }
     }

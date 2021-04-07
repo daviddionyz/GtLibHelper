@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GtLibHelper.View"
         mc:Ignorable="d"
-        Title="ThreeParamClassesWindow" MinHeight="380" MinWidth="250" MaxHeight="380" MaxWidth="250">
+        Title="ThreeParamClassesWindow" MinHeight="500" MinWidth="250" MaxHeight="500" MaxWidth="300">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -22,44 +22,52 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
 
         <!--text box for name and label-->
         <Label Name="labelForName" 
                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">Please give the name of class</Label>
-        <TextBox Name="Name"
+        <TextBox Name="Name" Text="{Binding ClassName}"
                  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
                  Height="20" Width="250"></TextBox>
 
         <!--Text box for items-->
         <Label Name="labelForItem"
                Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">Please give the type of the item</Label>
-        <TextBox Name="itemType"
+        <TextBox Name="itemType" Text="{Binding Item}"
                    Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
                    Height="20" Width="250"></TextBox>
 
         <!--Text box for T-->
         <Label Name="labelForT"
                Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">Please give the type of the T</Label>
-        <TextBox Name="TType"
+        <TextBox Name="TType" Text="{Binding T}"
                    Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"
                    Height="20" Width="250"></TextBox>
 
-        <TextBox Name="mainText" IsReadOnly="False"
-                 Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left"
-                 Height="200" Width="235" MaxHeight="200" MaxWidth="235"
-                 AcceptsTab="True" AcceptsReturn="True" TextWrapping="Wrap"></TextBox>
+        <Label Name="labelForLessOrGreat"
+               Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">Please give the type of the T</Label>
+        <ListBox Name="lessOrGreatListBox" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" SelectedItem="{Binding LessOrGreat}">
+            <ListBoxItem Content="Less" ></ListBoxItem>
+            <ListBoxItem Content="Great"></ListBoxItem>
+        </ListBox>
+
+        <TextBox Name="mainText" IsReadOnly="True" Text="{Binding ClassText}"
+                 Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left"
+                 Width="295" MinHeight="200" MaxWidth="295"></TextBox>
 
         <!--buttons ok and cancel-->
-        <Button Name="Ok" 
-                Grid.Row="7" Grid.Column="0"
+        <Button Name="Ok" Command="{Binding OkButtonClickedCommand}"
+                Grid.Row="9" Grid.Column="0"
                 Width="50" Height="20" >Ok</Button>
         <Button Name="Cancel" IsCancel="True"
-                Grid.Row="7" Grid.Column="1"
+                Grid.Row="9" Grid.Column="1"
                 Width="50" Height="20" >Cancel</Button>
 
         <!--label for to give feed back about the given class name-->
-        <Label Name="feedBackLabel"
-               Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2">asd</Label>
+        <Label Name="feedBackLabel" Content="{Binding FeedBackText}"
+               Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2"></Label>
     </Grid>
 </Window>

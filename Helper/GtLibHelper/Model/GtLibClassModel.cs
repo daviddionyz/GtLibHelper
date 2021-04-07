@@ -82,7 +82,7 @@ namespace GtLibHelper.Services
             return true;
         }
 
-        public void RefreshLibClassData(String name,String item, String T, String vlm, String text)
+        public void RefreshLibClassData(String name,String item, String T, String compare, String text)
         {
             switch (CurrentLibClass.Type)
             {
@@ -138,6 +138,13 @@ namespace GtLibHelper.Services
 
                     break;
                 case "MaxSearch":
+                    MaxSearch maxSearch = (MaxSearch)CurrentLibClass;
+
+                    maxSearch.Name = name;
+                    maxSearch.Item = item;
+                    maxSearch.T = T;
+                    maxSearch.Compare = compare;
+                    maxSearch.Text = text;
                     break;
 
             }

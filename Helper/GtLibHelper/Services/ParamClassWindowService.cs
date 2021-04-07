@@ -50,7 +50,14 @@ namespace GtLibHelper.Services
         }
         public void OpenThreeParamWindow(GtLibClassModel model) 
         {
+            _threeParamClassesWindow = new ThreeParamClassesWindow();
+            ThreeParamViewModel threeParamViewModel = new ThreeParamViewModel(model);
 
+            _threeParamClassesWindow.DataContext = threeParamViewModel;
+
+            threeParamViewModel.OkButtonClicked += OkButtonClicked_Handler;
+
+            _threeParamClassesWindow.ShowDialog();
         }
 
         private void OkButtonClicked_Handler(object sender, EventArgs e)

@@ -75,7 +75,7 @@ namespace GtLibHelper.ViewModel
         private void OnMaxSearchCreate() 
         {
             if (_gtLibClassModel.CreateNewLibClass("", "MaxSearch"))
-                return;
+                _paramClassWindowService.OpenThreeParamWindow(_gtLibClassModel);
         }
 
     }
