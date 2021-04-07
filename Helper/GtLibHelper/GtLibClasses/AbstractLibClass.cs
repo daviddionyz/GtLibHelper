@@ -10,5 +10,7 @@ namespace GtLibHelper.GtLibClasses
         public string Name { get; set; }
         public string NeededHeader { get; set; }
         public string Text { get; set; }
+
+        public virtual void RefreshText() { }
     }
 }

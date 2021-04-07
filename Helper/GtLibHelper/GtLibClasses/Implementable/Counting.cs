@@ -11,7 +11,7 @@ namespace GtLibHelper.GtLibClasses.Implementable
             this.Name = name;
             this.Type = "Counting";
             this.NeededHeader = "include \"counting.hpp\"";
-            this.Text = $"class {name}" + ": public Counting<T>" +
+            this.Text = "class _name_ " + ": public Counting<Item>" +
                 "{ \r\n" +
                 "private: \r\n" +
                 "\r\n" +
@@ -21,6 +21,19 @@ namespace GtLibHelper.GtLibClasses.Implementable
                 "   int func(const Item &e) const final override { return 1; } \r\n" +
                 "};\r\n";
 
+        }
+
+        public override void RefreshText() 
+        {
+            this.Text = $"class {Name}" + $": public Counting<{Item}>" +
+                "{ \r\n" +
+                "private: \r\n" +
+                "\r\n" +
+                "public: \r\n" +
+                "   int neutral() const final override { return 0; } \r\n" +
+                "   int add(const int &a, const int &b) const final override { return a + b; } \r\n" +
+                $"   int func(const {Item} &e)" + "const final override { return 1; } \r\n" +
+                "};\r\n";
         }
     }
 }

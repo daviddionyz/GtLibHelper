@@ -31,24 +31,26 @@
             </Menu>
         </DockPanel>
         <!--Implementabel classes-->
-        <DockPanel HorizontalAlignment="Center" Grid.Column="2" Grid.Row="1">
+        <StackPanel HorizontalAlignment="Center" Grid.Column="2" Grid.Row="1" Orientation="Vertical">
+            <!--struct-->
+            <Button Height="30" Width="Auto" Name="Struct" Content="Struct" Command="{Binding StructButtonClickedCommand}" />
             <!--1 param classes-->
-            <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="Enumerator" Content="Enumerator" Command="{Binding EnumeratorButtonClickedCommand}" />
-            <Button DockPanel.Dock="Top" Height="30" Width="120" Name="Selection" Content="Selection" Command="{Binding SelectionButtonClickedCommand}"/>
-            <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="Counting" Content="Counting" Command="{Binding CountingButtonClickedCommand}"/>
+            <Button Height="30" Width="Auto" Name="Enumerator" Content="Enumerator" Command="{Binding EnumeratorButtonClickedCommand}" />
+            <Button Height="30" Width="120" Name="Selection" Content="Selection" Command="{Binding SelectionButtonClickedCommand}"/>
+            <Button  Height="30" Width="Auto" Name="Counting" Content="Counting" Command="{Binding CountingButtonClickedCommand}"/>
             <!--2 param classes-->
-                <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="Summnation" Content="Summnation" Command="{Binding SummnationButtonClickedCommand}"/>
-            <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="LinSearch" Content="Lin search" Command="{Binding LinSearchButtonClickedCommand}"/>
+            <Button  Height="30" Width="Auto" Name="Summnation" Content="Summnation" Command="{Binding SummnationButtonClickedCommand}"/>
+            <Button  Height="30" Width="Auto" Name="LinSearch" Content="Lin search" Command="{Binding LinSearchButtonClickedCommand}"/>
             <!--3 param classes-->
-                    <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="MaxSearch" Content="Max search" Command="{Binding MaxSearchButtonClickedCommand}"/>
-        </DockPanel>
+            <Button Height="30" Width="Auto" Name="MaxSearch" Content="Max search" Command="{Binding MaxSearchButtonClickedCommand}"/>
+        </StackPanel>
         <!--Just useabel classes-->
-        <DockPanel Grid.Column="2" Grid.Row="2">
-            <Button DockPanel.Dock="Top" Height="30" Width="120" Name="ArrayEnumerator" Content="Array enumerator"/>
-            <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="StringEnumerator" Content="String enumerator"/>
-            <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="IntervalEnumerator" Content="Interval enumerator"/>
-            <Button DockPanel.Dock="Top" Height="30" Width="Auto" Name="SeqInFileEnumerator" Content="Seq in file Enumerator"/>
-        </DockPanel>
+        <StackPanel Grid.Column="2" Grid.Row="2" Orientation="Vertical">
+            <Button Height="30" Width="120" Name="ArrayEnumerator" Content="Array enumerator"/>
+            <Button Height="30" Width="Auto" Name="StringEnumerator" Content="String enumerator"/>
+            <Button Height="30" Width="Auto" Name="IntervalEnumerator" Content="Interval enumerator"/>
+            <Button Height="30" Width="Auto" Name="SeqInFileEnumerator" Content="Seq in file Enumerator"/>
+        </StackPanel>
         <!--Save and Run section-->
         <DockPanel Grid.Column="2" Grid.Row="3">
             <Button DockPanel.Dock="Bottom" Height="30" Name="Save" Content="Save"/>

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GtLibHelper.Model
+namespace GtLibHelper.ViewModel
 {
-    public class GtLibHelperModel
+    public class ThreeParamViewModel : ViewModelBase
     {
-        //nem kő
+
     }
 }

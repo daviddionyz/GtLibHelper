@@ -1,16 +1,16 @@
 ﻿using System.Windows;
 
+
 namespace GtLibHelper.View
 {
     /// <summary>
-    /// Interaction logic for TwoParamClassesWindow.xaml
+    /// Interaction logic for ThreeParamClassesWindow.xaml
     /// </summary>
-    public partial class TwoParamClassesWindow : Window
+    public partial class ThreeParamClassesWindow : Window
     {
-        public TwoParamClassesWindow()
+        public ThreeParamClassesWindow()
         {
             InitializeComponent();
         }
-
     }
 }

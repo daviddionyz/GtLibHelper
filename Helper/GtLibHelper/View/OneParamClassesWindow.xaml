@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GtLibHelper.View"
         mc:Ignorable="d"
-        Title="Class" MinHeight="380" MinWidth="300" MaxHeight="380" MaxWidth="300">
+        Title="Class" MinHeight="380" MinWidth="250" MaxHeight="380" MaxWidth="250">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -37,16 +37,15 @@
                    Height="20" Width="250"></TextBox>
 
 
-        <TextBox Name="mainText" IsReadOnly="False"
+        <TextBox Name="mainText" IsReadOnly="true" Text="{Binding ClassText, Mode=OneWay}"
                  Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left"
-                 Height="200" Width="290" MaxHeight="200" MaxWidth="290"
-                 AcceptsTab="True" AcceptsReturn="True" TextWrapping="Wrap"></TextBox>
+                 Height="200" Width="240" MaxHeight="200" MaxWidth="240"></TextBox>
         
         <!--buttons ok and cancel-->
         <Button Name="Ok" Command="{Binding OkButtonClickedCommand}"
                 Grid.Column="0" Grid.Row="5"
                 Width="50" Height="20" >Ok</Button>
-        <Button Name="Cancel" Command="{Binding CancelButtonClickedCommand}"
+        <Button Name="Cancel" IsCancel="True" 
                 Grid.Column="1" Grid.Row="5"
                 Width="50" Height="20"  >Cancel</Button>
         

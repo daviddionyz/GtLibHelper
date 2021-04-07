@@ -11,13 +11,28 @@ namespace GtLibHelper.GtLibClasses.Implementable
             this.Name = name;
             this.Type = "Selection";
             this.NeededHeader = "include \"selection.hpp\"";
-            this.Text = $"class {name}" + ": public Selection<T>" +
+            this.Text = "class _name_" + ": public Selection<T>" +
                 "{ \r\n" +
                 "private: \r\n" +
                 "\r\n" +
                 "protected: \r\n" +
                 "   void init() override final {}\r\n" +
                 "   void body(const T& e) override final {}\r\n" +
+                "   \r\n" +
+                "public: \r\n" +
+                "   \r\n" +
+                "};\r\n";
+        }
+
+        public override void RefreshText()
+        {
+            this.Text = $"class {Name}" + $": public Selection<{Item}>" +
+                "{ \r\n" +
+                "private: \r\n" +
+                "\r\n" +
+                "protected: \r\n" +
+                "   void init() override final {}\r\n" +
+                $"   void body(const {Item}& e)" + " override final {}\r\n" +
                 "   \r\n" +
                 "public: \r\n" +
                 "   \r\n" +

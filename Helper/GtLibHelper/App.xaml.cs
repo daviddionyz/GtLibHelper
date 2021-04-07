@@ -1,4 +1,5 @@
-﻿using GtLibHelper.ViewModel;
+﻿using GtLibHelper.Services;
+using GtLibHelper.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -14,12 +15,15 @@ namespace GtLibHelper
     /// </summary>
     public partial class App : Application
     {
-        private GtLibHelperViewModel _viewModel;
+        private MainWindowViewModel _viewModel;
         private MainWindow _mainWindow;
+        private GtLibClassModel _gtLibClassModel;
 
         public App(){
+            _gtLibClassModel = new GtLibClassModel();
+
             //view model part
-            _viewModel = new GtLibHelperViewModel();
+            _viewModel = new MainWindowViewModel(_gtLibClassModel);
 
             //main window part
             _mainWindow = new MainWindow();
