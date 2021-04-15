@@ -22,8 +22,14 @@ namespace GtLibHelper.Services
             }
         }
         public AbstractLibClass CurrentLibClass { 
-            get{ return _currentLibClass; } 
-            private set{ _currentLibClass = value; } 
+            get
+            { 
+                return _currentLibClass;
+            } 
+            private set
+            {
+                _currentLibClass = value;
+            } 
         }
 
         public GtLibClassModel() 
@@ -54,7 +60,7 @@ namespace GtLibHelper.Services
             switch (type)
             {
                 case "Main":
-                    CurrentLibClass = null;
+                    CurrentLibClass = new OwnMain(name);
                     break;
                 case "Struct":
                     CurrentLibClass = new OwnStruct(name);
@@ -87,6 +93,11 @@ namespace GtLibHelper.Services
             switch (CurrentLibClass.Type)
             {
                 case "Main":
+                    OwnMain ownMain = (OwnMain)CurrentLibClass;
+
+                    ownMain.Name = name;
+                    ownMain.Text = text;
+
                     break;
                 case "Struct":
                     OwnStruct ownStruct = (OwnStruct)CurrentLibClass;
@@ -145,6 +156,7 @@ namespace GtLibHelper.Services
                     maxSearch.T = T;
                     maxSearch.Compare = compare;
                     maxSearch.Text = text;
+
                     break;
 
             }
@@ -158,5 +170,6 @@ namespace GtLibHelper.Services
                 CurrentLibClass = null;
             }
         }
+
     }
 }

@@ -1,0 +1,35 @@
+﻿<Window x:Class="GtLibHelper.View.EnumeratorsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GtLibHelper.View"
+        mc:Ignorable="d"
+        Title="EnumeratorsWindow" Height="500" Width="400">
+    <StackPanel>
+        <Label>
+            Válaszaki, hogy melyik osztájhoz szeretné hozzá addni az enumeratort
+        </Label>
+        <ListBox ItemsSource="{Binding GtLibClassesNames}" SelectedItem="{Binding SelectedClass}">
+        </ListBox>
+        <Label>
+            A kiválasztot osztály:
+        </Label>
+        <TextBox AcceptsReturn="True" AcceptsTab="True" IsReadOnly="false" 
+                 Height="200"
+                 Text="{Binding SelectedClassText,Mode=TwoWay}">
+        </TextBox>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Name="Ok" Command="{Binding OkButtonClickedCommand}"
+                Grid.Column="0"
+                Width="50" Height="20" >Ok</Button>
+            <Button Name="Cancel" IsCancel="True" 
+                Grid.Column="1"
+                Width="50" Height="20"  >Cancel</Button>
+        </Grid>
+    </StackPanel>
+</Window>

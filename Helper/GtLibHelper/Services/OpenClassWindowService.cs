@@ -8,25 +8,27 @@ using System.Text;
 
 namespace GtLibHelper.Services
 {
-    public class ParamClassWindowService
+    public class OpenClassWindowService
     {
         private OneParamClassesWindow _oneParamClassesWindow;
-        private TwoParamClassesWindow   _twoParamClassesWindow;
+        private TwoParamClassesWindow _twoParamClassesWindow;
         private ThreeParamClassesWindow _threeParamClassesWindow;
+        private OwnStructWindow _ownStructWindow;
+        private EnumeratorsWindow _enumeratorsWindow;
 
-        public ParamClassWindowService()
+        public OpenClassWindowService()
         {
-
+            
         }
 
         public void OpenOneParamWindow(GtLibClassModel model)
         {
-            
-            if (model.CurrentLibClass != null) 
+
+            if (model.CurrentLibClass != null)
             {
                 _oneParamClassesWindow = new OneParamClassesWindow();
                 OneParamViewModel oneParamViewModel = new OneParamViewModel(model);
-            
+
                 _oneParamClassesWindow.DataContext = oneParamViewModel;
 
                 oneParamViewModel.OkButtonClicked += OkButtonClicked_Handler;
@@ -34,7 +36,7 @@ namespace GtLibHelper.Services
                 _oneParamClassesWindow.ShowDialog();
             }
         }
-        public void OpenTwoParamWindow(GtLibClassModel model) 
+        public void OpenTwoParamWindow(GtLibClassModel model)
         {
             if (model.CurrentLibClass != null)
             {
@@ -48,7 +50,7 @@ namespace GtLibHelper.Services
                 _twoParamClassesWindow.ShowDialog();
             }
         }
-        public void OpenThreeParamWindow(GtLibClassModel model) 
+        public void OpenThreeParamWindow(GtLibClassModel model)
         {
             _threeParamClassesWindow = new ThreeParamClassesWindow();
             ThreeParamViewModel threeParamViewModel = new ThreeParamViewModel(model);
@@ -59,6 +61,29 @@ namespace GtLibHelper.Services
 
             _threeParamClassesWindow.ShowDialog();
         }
+        public void OpenOwnStructWindow(GtLibClassModel model)
+        {
+            _ownStructWindow = new OwnStructWindow();
+            OwnStructViewModel ownStructViewModel = new OwnStructViewModel(model);
+
+            _ownStructWindow.DataContext = ownStructViewModel;
+
+            ownStructViewModel.OkButtonClicked += OkButtonClicked_Handler;
+
+            _ownStructWindow.ShowDialog();
+        }
+        public void OpenEnumeratorsWindow(GtLibClassModel model, String selectedEnumeratorType) 
+        {
+            _enumeratorsWindow = new EnumeratorsWindow();
+            EnumeratorsWindowViewModel enumeratorsWindowViewModel = new EnumeratorsWindowViewModel(model, selectedEnumeratorType);
+
+            _enumeratorsWindow.DataContext = enumeratorsWindowViewModel;
+
+            enumeratorsWindowViewModel.OkButtonClicked += OkButtonClicked_Handler;
+
+            _enumeratorsWindow.ShowDialog();
+        }
+
 
         private void OkButtonClicked_Handler(object sender, EventArgs e)
         {
@@ -78,7 +103,22 @@ namespace GtLibHelper.Services
                 _threeParamClassesWindow.Close();
                 _threeParamClassesWindow = null;
             }
-        }
+            else if (_ownStructWindow != null)
+            {
+                _ownStructWindow.Close();
+                _ownStructWindow = null;
+            } else if (_enumeratorsWindow.IsActive) 
+            {
+                _enumeratorsWindow.Close();
+                _enumeratorsWindow = null;
+            }
 
+            Raise_ClassGeneratedEvent();
+        }
+        public event EventHandler ClassGenerated;
+        private void Raise_ClassGeneratedEvent() 
+        {
+            ClassGenerated?.Invoke(this, new EventArgs());
+        }
     }
 }

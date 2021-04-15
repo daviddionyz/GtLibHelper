@@ -10,18 +10,18 @@ namespace GtLibHelper.GtLibClasses.Implementable
         {
             this.Name = name;
             this.Type = "MaxSearch";
-            this.NeededHeader = "include \"maxsearch.hpp\"";
-            this.Text = $"class {name}" + " : public MaxSearch<Item, Value, Compare>\r\n" +
+            this.NeededHeader = "#include \"maxsearch.hpp\"";
+            this.Text = "class _name_" + " : public MaxSearch<Item, Value, Compare>\r\n" +
                 "{ \r\n" +
                 "private: \r\n" +
-                "   \r\n" +
+                "\t\r\n" +
                 "protected: \r\n" +
-                "   Value func(const Item& e) const override { };\r\n" +
-                "   bool  cond(const Item& e) const override { return true;}\r\n" +
+                "\tValue func(const Item& e) const override { };\r\n" +
+                "\tbool  cond(const Item& e) const override { return true;}\r\n" +
                 "public: \r\n" +
-                "   bool found()   const { return _l;}\r\n" +
-                "   Value opt()    const { return _opt;}\r\n" +
-                "   Item optElem() const { return _optelem;}\r\n" +
+                "\tbool found()   const { return _l;}\r\n" +
+                "\tValue opt()    const { return _opt;}\r\n" +
+                "\tItem optElem() const { return _optelem;}\r\n" +
                 "}\r\n";
         }
 
@@ -33,12 +33,12 @@ namespace GtLibHelper.GtLibClasses.Implementable
                 "private: \r\n" +
                 "   \r\n" +
                 "protected: \r\n" +
-                $"   {T} func(const {Item}& e) " + " const override { };\r\n" +
-                $"   bool  cond(const {Item}& e) " + " const override { return true;}\r\n" +
+                $"\t{T} func(const {Item}& e) " + " const override { };\r\n" +
+                $"\tbool  cond(const {Item}& e) " + " const override { return true;}\r\n" +
                 "public: \r\n" +
-                "   bool found()   const { return _l;}\r\n" +
-                $"   {T} opt()   " + " const { return _opt;}\r\n" +
-                $"   {Item} optElem() " + "  const { return _optelem;}\r\n" +
+                "\tbool found()   const { return _l;}\r\n" +
+                $"\t{T} opt()   " + " const { return _opt;}\r\n" +
+                $"\t{Item} optElem() " + "  const { return _optelem;}\r\n" +
                 "}\r\n";
         }
     }
