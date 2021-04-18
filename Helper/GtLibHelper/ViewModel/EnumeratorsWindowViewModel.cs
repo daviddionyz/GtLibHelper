@@ -1,4 +1,5 @@
 ﻿using GtLibHelper.GtLibClasses;
+using GtLibHelper.OwnEventArgs;
 using GtLibHelper.Services;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace GtLibHelper.ViewModel
         private GtLibClassModel _gtLibClassModel;
         private String _selectedEnumeratorType;
 
-        public EnumeratorsWindowViewModel(GtLibClassModel gtLibClassModel, String selectedEnumeratorType) 
+        public EnumeratorsWindowViewModel(GtLibClassModel gtLibClassModel, String selectedEnumeratorType)
         {
             _gtLibClassModel = gtLibClassModel;
             _selectedEnumeratorType = selectedEnumeratorType;
@@ -21,62 +22,62 @@ namespace GtLibHelper.ViewModel
         }
 
         private List<String> _gtLibClassNames;
-        public List<String> GtLibClassesNames 
+        public List<String> GtLibClassesNames
         {
-            get 
+            get
             {
                 return _gtLibClassNames;
             }
-            private set 
+            private set
             {
                 _gtLibClassNames = value;
                 OnPropertyChanged("GtLibClassesNames");
             }
         }
-        private void SetClassNames() 
+        private void SetClassNames()
         {
             _gtLibClassNames = new List<string>();
 
-            foreach (AbstractLibClass member in _gtLibClassModel.ListOfLibClasses) 
+            foreach (AbstractLibClass member in _gtLibClassModel.ListOfLibClasses)
             {
                 _gtLibClassNames.Add(member.Name);
             }
         }
 
         private String _selectedClassName;
-        public String SelectedClass 
+        public String SelectedClass
         {
-            get 
+            get
             {
                 return _selectedClassName;
             }
-            set 
+            set
             {
                 _selectedClassName = value;
                 ClassSelected();
             }
         }
 
-        private void ClassSelected() 
+        private void ClassSelected()
         {
-            SelectedClassText = ( _gtLibClassModel.ListOfLibClasses.Find(m => m.Name == SelectedClass) ).Text;
+            SelectedClassText = (_gtLibClassModel.ListOfLibClasses.Find(m => m.Name == SelectedClass)).Text;
 
             string[] str;
 
             if (SelectedClassText.Contains("private:"))
             {
                 str = SelectedClassText.Split("private:");
-                SelectedClassText = str[0] 
+                SelectedClassText = str[0]
                     + "private:\r\n"
                     + $"\t{_selectedEnumeratorType}<> {_selectedEnumeratorType.ToLower()}; \r\n"
                     + str[1].Substring(8);
             }
-            else if (SelectedClassText.Contains("public:")) 
+            else if (SelectedClassText.Contains("public:"))
             {
                 str = SelectedClassText.Split("public:");
-                SelectedClassText = str[0] 
-                    + "public:\r\n" 
-                    + $"\t{_selectedEnumeratorType}<> {_selectedEnumeratorType.ToLower()}; \r\n" 
+                SelectedClassText = str[0]
+                    + "public:\r\n"
+                    + $"\t{_selectedEnumeratorType}<> {_selectedEnumeratorType.ToLower()}; \r\n"
                     + str[1].Substring(7);
             }
             else if (SelectedClassText.Contains("protected:"))
@@ -99,13 +100,13 @@ namespace GtLibHelper.ViewModel
         }
 
         private String _selectedClassText;
-        public String SelectedClassText 
+        public String SelectedClassText
         {
-            get 
+            get
             {
                 return _selectedClassText;
             }
-            set 
+            set
             {
                 _selectedClassText = value;
                 OnPropertyChanged("SelectedClassText");
@@ -117,6 +118,7 @@ namespace GtLibHelper.ViewModel
         private void OnOkButtonClicked()
         {
             (_gtLibClassModel.ListOfLibClasses.Find(m => m.Name == SelectedClass)).Text = SelectedClassText;
+            RaiseEnumeratorCalssCreated();
             RaiseOkButtonClicked();
         }
 
@@ -125,6 +127,13 @@ namespace GtLibHelper.ViewModel
         private void RaiseOkButtonClicked()
         {
             OkButtonClicked?.Invoke(this, new EventArgs());
+        }
+
+        public event EventHandler<EnumeratorCreatedEventArgs> EnumeratorCalssCreated;
+
+        private void RaiseEnumeratorCalssCreated() 
+        {
+            EnumeratorCalssCreated?.Invoke(this, new EnumeratorCreatedEventArgs(_selectedEnumeratorType));
         }
     }
 }

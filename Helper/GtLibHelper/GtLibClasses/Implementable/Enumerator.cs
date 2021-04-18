@@ -10,7 +10,7 @@ namespace GtLibHelper.GtLibClasses.Implementable
         {
             this.Name = name;
             this.Type = "Enumerator";
-            this.NeededHeader = "#include \"enumerator.hpp\"";
+            this.NeededHeader = "#include \"gtlib\\enumerator.hpp\"";
             this.Text = "class _name_" + ": public Enumerator<T>" +
                 "{ \r\n" +
                 "private: \r\n" +
@@ -25,7 +25,7 @@ namespace GtLibHelper.GtLibClasses.Implementable
 
         public override void RefreshText()
         {
-            this.Text = $"class {Name}" + $": public Enumerator<{Item}>" +
+            this.Text = $"class {Name} " + $": public Enumerator<{Item}>" +
             "{ \r\n" +
             "private: \r\n" +
             "\r\n" +

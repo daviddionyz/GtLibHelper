@@ -10,7 +10,7 @@ namespace GtLibHelper.GtLibClasses.Implementable
         {
             this.Name = name;
             this.Type = "MaxSearch";
-            this.NeededHeader = "#include \"maxsearch.hpp\"";
+            this.NeededHeader = "#include \"gtlib\\maxsearch.hpp\"";
             this.Text = "class _name_" + " : public MaxSearch<Item, Value, Compare>\r\n" +
                 "{ \r\n" +
                 "private: \r\n" +
@@ -28,7 +28,7 @@ namespace GtLibHelper.GtLibClasses.Implementable
 
         public override void RefreshText()
         {
-            this.Text = $"class {Name}" + $" : public MaxSearch<{Item}, {T}, {Compare}>\r\n" +
+            this.Text = $"class {Name} " + $": public MaxSearch<{Item}, {T}, {Compare}>\r\n" +
                 "{ \r\n" +
                 "private: \r\n" +
                 "   \r\n" +

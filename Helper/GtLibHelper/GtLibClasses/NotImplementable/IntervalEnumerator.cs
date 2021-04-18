@@ -10,7 +10,7 @@ namespace GtLibHelper.GtLibClasses.NotImplementable
         {
             this.Name = name;
             this.Type = "IntervalEnumerator";
-            this.NeededHeader = "#include \"enumerator.hpp\"";
+            this.NeededHeader = "#include \"gtlib\\enumerator.hpp\"";
             this.Text = $"private IntervalEnumerator<T> ${name}()";
         }
     }

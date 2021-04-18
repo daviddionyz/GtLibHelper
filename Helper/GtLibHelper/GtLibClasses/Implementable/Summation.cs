@@ -10,7 +10,7 @@ namespace GtLibHelper.GtLibClasses.Implementable
         {
             this.Name = name;
             this.Type = "Summation";
-            this.NeededHeader = "#include \"summation.hpp\"";
+            this.NeededHeader = "#include \"gtlib\\summation.hpp\"";
             this.Text = "class _name_" + " : public Summation<A,T>\r\n" +
                 "{ \r\n" +
                 "private: \r\n" +
@@ -24,7 +24,7 @@ namespace GtLibHelper.GtLibClasses.Implementable
 
         public override void RefreshText()
         {
-            this.Text = $"class {Name}" + $" : public Summation<{Item},{T}>\r\n" +
+            this.Text = $"class {Name} " + $" : public Summation<{Item},{T}>\r\n" +
                 "{ \r\n" +
                 "private: \r\n" +
                 "\r\n" +

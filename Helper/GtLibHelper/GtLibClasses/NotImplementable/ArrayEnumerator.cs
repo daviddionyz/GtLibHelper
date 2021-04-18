@@ -10,7 +10,7 @@ namespace GtLibHelper.GtLibClasses.NotImplementable
         {
             this.Name = name;
             this.Type = "ArrayEnumerator";
-            this.NeededHeader = "#include \"arrayenumerator.hpp\"";
+            this.NeededHeader = "#include \"gtlib\\arrayenumerator.hpp\"";
             this.Text = $"private ArrayEnumerator<T> {name}()";
         }
     }

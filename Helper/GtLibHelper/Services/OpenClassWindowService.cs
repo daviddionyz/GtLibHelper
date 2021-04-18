@@ -80,10 +80,10 @@ namespace GtLibHelper.Services
             _enumeratorsWindow.DataContext = enumeratorsWindowViewModel;
 
             enumeratorsWindowViewModel.OkButtonClicked += OkButtonClicked_Handler;
+            enumeratorsWindowViewModel.EnumeratorCalssCreated += EnumeratorClassCreated_Handler;
 
             _enumeratorsWindow.ShowDialog();
         }
-
 
         private void OkButtonClicked_Handler(object sender, EventArgs e)
         {
@@ -120,5 +120,12 @@ namespace GtLibHelper.Services
         {
             ClassGenerated?.Invoke(this, new EventArgs());
         }
+
+        public event EventHandler<EnumeratorCreatedEventArgs> EnumeratorClassCreated;
+        private void EnumeratorClassCreated_Handler(object sender, EnumeratorCreatedEventArgs e) 
+        {
+            EnumeratorClassCreated?.Invoke(sender, e);
+        }
+
     }
 }

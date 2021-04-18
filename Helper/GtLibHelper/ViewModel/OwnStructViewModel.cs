@@ -10,7 +10,6 @@ namespace GtLibHelper.ViewModel
         private String _feedBackText;
         private String _className;
         private String _classText;
-        private String _item;
         private GtLibClassModel _gtLibClassModel;
 
         public String ClassName

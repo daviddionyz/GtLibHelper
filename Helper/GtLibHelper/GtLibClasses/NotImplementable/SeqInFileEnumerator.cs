@@ -10,7 +10,7 @@ namespace GtLibHelper.GtLibClasses.NotImplementable
         {
             this.Name = name;
             this.Type = "SeqInFileEnumerator";
-            this.NeededHeader = "#include \"seqinfileenumerator.hpp\"";
+            this.NeededHeader = "#include \"gtlib\\seqinfileenumerator.hpp\"";
             this.Text = $"private SeqInFileEnumerator<T> {name}()";
         }
     }

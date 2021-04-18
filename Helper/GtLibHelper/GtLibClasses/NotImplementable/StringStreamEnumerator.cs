@@ -10,7 +10,7 @@ namespace GtLibHelper.GtLibClasses.NotImplementable
         {
             this.Name = name;
             this.Type = "StringStreamEnumerator";
-            this.NeededHeader = "#include \"stringstreamenumerator.hpp\"";
+            this.NeededHeader = "#include \"gtlib\\stringstreamenumerator.hpp\"";
             this.Text = $"private StringStreamEnumerator<T> {name}()";
         }
     }

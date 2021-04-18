@@ -1,4 +1,5 @@
-﻿using GtLibHelper.Services;
+﻿using GtLibHelper.Persistence;
+using GtLibHelper.Services;
 using GtLibHelper.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -18,12 +19,14 @@ namespace GtLibHelper
         private MainWindowViewModel _viewModel;
         private MainWindow _mainWindow;
         private GtLibClassModel _gtLibClassModel;
+        private DataAccess _dataAccess;
 
         public App(){
             _gtLibClassModel = new GtLibClassModel();
+            _dataAccess = new DataAccess();
 
             //view model part
-            _viewModel = new MainWindowViewModel(_gtLibClassModel);
+            _viewModel = new MainWindowViewModel(_gtLibClassModel,_dataAccess);
 
             //main window part
             _mainWindow = new MainWindow();

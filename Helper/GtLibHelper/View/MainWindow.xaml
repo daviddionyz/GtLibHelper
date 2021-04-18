@@ -11,7 +11,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="170" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -23,9 +23,9 @@
         <DockPanel VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="0">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="File">
-                    <MenuItem Header="New Project" />
-                    <MenuItem Header="Open Project" />
-                    <MenuItem Header="Save Project" />
+                    <MenuItem Header="New Project"  Command="{Binding NewProjectButtonClickedCommand}" />
+                    <MenuItem Header="Load Project" Command="{Binding LoadProjectButtonClickedCommand}" />
+                    <MenuItem Header="Save Project" Command="{Binding SaveProjectButtonClickedCommand}" />
                     <Separator />
                     <MenuItem Header="Exit" Command="{Binding ExitButtonCommand}"/>
                 </MenuItem>
@@ -47,16 +47,16 @@
         </StackPanel>
         <!--Just useabel classes-->
         <StackPanel Grid.Column="3" Grid.Row="2" Orientation="Vertical">
-            <Button Height="30" Width="120" Name="ArrayEnumerator" Content="Array enumerator" Command="{Binding ArrayEnumeratorButtonClickedCommand}"/>
+            <Button Height="30" Width="Auto" Name="ArrayEnumerator" Content="Array enumerator" Command="{Binding ArrayEnumeratorButtonClickedCommand}"/>
             <Button Height="30" Width="Auto" Name="StringEnumerator" Content="String enumerator"  Command="{Binding StringEnumeratorButtonClickedCommand}"/>
             <Button Height="30" Width="Auto" Name="IntervalEnumerator" Content="Interval enumerator"  Command="{Binding IntervalEnumeratorButtonClickedCommand}"/>
             <Button Height="30" Width="Auto" Name="SeqInFileEnumerator" Content="Seq in file Enumerator"  Command="{Binding SeqInFileEnumeratorButtonClickedCommand}"/>
         </StackPanel>
         <!--Save and Run section-->
-        <DockPanel Grid.Column="3" Grid.Row="3">
-            <Button DockPanel.Dock="Bottom" Height="30" Name="Save" Content="Save"/>
-            <Button DockPanel.Dock="Bottom" Height="30" Name="Run" Content="Run"/>
-        </DockPanel>
+        <StackPanel VerticalAlignment="Bottom" Grid.Column="3" Grid.Row="3">
+            <Button DockPanel.Dock="Bottom" Height="30" Name="Save" Content="Save" Command="{Binding SaveButtonClickedCommand}"/>
+            <Button DockPanel.Dock="Bottom" Height="30" Name="Run" Content="Run" Command="{Binding RunButtonClickedCommand}"/>
+        </StackPanel>
         <!--Gt Lib Class showing part-->
         <ListView Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="1" 
                   ItemsSource="{Binding GtLibClassesObservable}"
@@ -73,9 +73,9 @@
 
         </ListView>
         <!--include headers-->
-        <StackPanel Grid.Row="1" Grid.Column="2" Width="150">
+        <StackPanel Grid.Row="1" Grid.Column="2" Width="170" Height="300">
             <Label>
-                Headerek.
+                Includ-ok:
             </Label>
             <TextBox AcceptsReturn="True" AcceptsTab="True" IsReadOnly="False" Height="200"
                      Text="{Binding Headers, Mode=TwoWay}"></TextBox>

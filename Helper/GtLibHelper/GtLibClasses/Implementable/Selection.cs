@@ -10,7 +10,7 @@ namespace GtLibHelper.GtLibClasses.Implementable
         {
             this.Name = name;
             this.Type = "Selection";
-            this.NeededHeader = "#include \"selection.hpp\"";
+            this.NeededHeader = "#include \"gtlib\\selection.hpp\"";
             this.Text = "class _name_" + ": public Selection<T>" +
                 "{ \r\n" +
                 "private: \r\n" +
@@ -26,7 +26,7 @@ namespace GtLibHelper.GtLibClasses.Implementable
 
         public override void RefreshText()
         {
-            this.Text = $"class {Name}" + $": public Selection<{Item}>" +
+            this.Text = $"class {Name} " + $": public Selection<{Item}>" +
                 "{ \r\n" +
                 "private: \r\n" +
                 "\r\n" +

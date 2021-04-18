@@ -10,7 +10,7 @@ namespace GtLibHelper.GtLibClasses.Implementable
         {
             this.Name = name;
             this.Type = "Counting";
-            this.NeededHeader = "#include \"counting.hpp\"";
+            this.NeededHeader = "#include \"gtlib\\counting.hpp\"";
             this.Text = "class _name_ " + ": public Counting<Item>" +
                 "{ \r\n" +
                 "private: \r\n" +
@@ -25,7 +25,7 @@ namespace GtLibHelper.GtLibClasses.Implementable
 
         public override void RefreshText() 
         {
-            this.Text = $"class {Name}" + $": public Counting<{Item}>" +
+            this.Text = $"class {Name} " + $": public Counting<{Item}>" +
                 "{ \r\n" +
                 "private: \r\n" +
                 "\r\n" +

@@ -4,13 +4,13 @@ using System.Text;
 
 namespace GtLibHelper.OwnEventArgs
 {
-    public class NameCheckEventArgs : EventArgs
+    public class EnumeratorCreatedEventArgs : EventArgs
     {
-        public String Name { get; set; }
+        public String Type { get; set; }
 
-        public NameCheckEventArgs(String name) 
+        public EnumeratorCreatedEventArgs(String type) 
         {
-            Name = name;
+            Type = type;
         }
     }
 }

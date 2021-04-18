@@ -158,8 +158,7 @@ namespace GtLibHelper.Services
                     maxSearch.Text = text;
 
                     break;
-
-            }
+                }
             }
 
         public void AddCurrentLibClass() 
@@ -171,5 +170,26 @@ namespace GtLibHelper.Services
             }
         }
 
+        public string GetHeaderForClass(string type)
+        {
+            switch (type)
+            {
+                case "ArrayEnumerator":
+                    return "#include \"gtlib\\arrayenumerator.hpp\"";
+                case "IntervalEnumerator":
+                    return "#include \"gtlib\\enumerator.hpp\"";
+                case "SeqInFileEnumerator":
+                    return "#include \"gtlib\\seqinfileenumerator.hpp\"";
+                case "StringStreamEnumerator":
+                    return "#include \"gtlib\\stringstreamenumerator.hpp\"";
+            }
+            return null;
+        }
+
+        public void Clear() 
+        {
+            ListOfLibClasses = new List<AbstractLibClass>();
+            CurrentLibClass = null;
+        }
     }
 }
