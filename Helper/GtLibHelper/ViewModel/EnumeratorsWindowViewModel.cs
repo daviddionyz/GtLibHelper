@@ -45,7 +45,7 @@ namespace GtLibHelper.ViewModel
         }
 
         private String _selectedClassName;
-        public String SelectedClass
+        public String SelectedClassName
         {
             get
             {
@@ -60,7 +60,7 @@ namespace GtLibHelper.ViewModel
 
         private void ClassSelected()
         {
-            SelectedClassText = (_gtLibClassModel.ListOfLibClasses.Find(m => m.Name == SelectedClass)).Text;
+            SelectedClassText = (_gtLibClassModel.ListOfLibClasses.Find(m => m.Name.Equals(SelectedClassName))).Text;
 
             string[] str;
 
@@ -70,7 +70,7 @@ namespace GtLibHelper.ViewModel
                 SelectedClassText = str[0]
                     + "private:\r\n"
                     + $"\t{_selectedEnumeratorType}<> {_selectedEnumeratorType.ToLower()}; \r\n"
-                    + str[1].Substring(8);
+                    + str[1];
             }
             else if (SelectedClassText.Contains("public:"))
             {
@@ -78,7 +78,7 @@ namespace GtLibHelper.ViewModel
                 SelectedClassText = str[0]
                     + "public:\r\n"
                     + $"\t{_selectedEnumeratorType}<> {_selectedEnumeratorType.ToLower()}; \r\n"
-                    + str[1].Substring(7);
+                    + str[1];
             }
             else if (SelectedClassText.Contains("protected:"))
             {
@@ -86,7 +86,7 @@ namespace GtLibHelper.ViewModel
                 SelectedClassText = str[0]
                     + "protected:\r\n"
                     + $"\t{_selectedEnumeratorType}<> {_selectedEnumeratorType.ToLower()}; \r\n"
-                    + str[1].Substring(10);
+                    + str[1];
             }
             else
             {
@@ -94,7 +94,7 @@ namespace GtLibHelper.ViewModel
                 SelectedClassText = str[0]
                     + "{\r\n"
                     + $"\t{_selectedEnumeratorType}<> {_selectedEnumeratorType.ToLower()} = new {_selectedEnumeratorType}<>(); \r\n"
-                    + str[1].Substring(1);
+                    + str[1];
             }
 
         }
@@ -117,7 +117,7 @@ namespace GtLibHelper.ViewModel
 
         private void OnOkButtonClicked()
         {
-            (_gtLibClassModel.ListOfLibClasses.Find(m => m.Name == SelectedClass)).Text = SelectedClassText;
+            (_gtLibClassModel.ListOfLibClasses.Find(m => m.Name.Equals(SelectedClassName))).Text = SelectedClassText;
             RaiseEnumeratorCalssCreated();
             RaiseOkButtonClicked();
         }

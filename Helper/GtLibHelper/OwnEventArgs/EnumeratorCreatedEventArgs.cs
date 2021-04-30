@@ -6,11 +6,11 @@ namespace GtLibHelper.OwnEventArgs
 {
     public class EnumeratorCreatedEventArgs : EventArgs
     {
-        public String Type { get; set; }
+        public String Type {get;set;}
 
-        public EnumeratorCreatedEventArgs(String type) 
+        public EnumeratorCreatedEventArgs(string type) 
         {
-            Type = type;
+            this.Type = type;
         }
-    }
+    }   
 }

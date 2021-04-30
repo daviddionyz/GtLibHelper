@@ -27,47 +27,43 @@
         </Grid.RowDefinitions>
 
         <!--text box for name and label-->
-        <Label Name="labelForName" 
-               Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">Please give the name of class</Label>
-        <TextBox Name="Name" Text="{Binding ClassName}"
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">Please give the name of class</Label>
+        <TextBox Text="{Binding ClassName}" VerticalAlignment="Center"
                  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
                  Height="20" Width="250"></TextBox>
 
         <!--Text box for items-->
-        <Label Name="labelForItem"
-               Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">Please give the type of the item</Label>
-        <TextBox Name="itemType" Text="{Binding Item}"
+        <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">Please give the type of the item</Label>
+        <TextBox Text="{Binding Item}" VerticalAlignment="Center"
                    Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
                    Height="20" Width="250"></TextBox>
 
         <!--Text box for T-->
-        <Label Name="labelForT"
-               Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">Please give the type of the T</Label>
-        <TextBox Name="TType" Text="{Binding T}"
+        <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">Please give the type of the T</Label>
+        <TextBox Text="{Binding T}" VerticalAlignment="Center"
                    Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"
                    Height="20" Width="250"></TextBox>
 
-        <Label Name="labelForLessOrGreat"
-               Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">Please give the type of the T</Label>
-        <ListBox Name="lessOrGreatListBox" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" SelectedItem="{Binding LessOrGreat}">
+        <Label Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">Please give the type of the T</Label>
+        <ListBox Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" SelectedItem="{Binding LessOrGreat}" VerticalAlignment="Center"> 
             <ListBoxItem Content="Less" ></ListBoxItem>
             <ListBoxItem Content="Great"></ListBoxItem>
         </ListBox>
 
-        <TextBox Name="mainText" IsReadOnly="True" Text="{Binding ClassText}"
+        <TextBox IsReadOnly="True" Text="{Binding ClassText}" VerticalAlignment="Center"
                  Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left"
                  Width="295" MinHeight="200" MaxWidth="295"></TextBox>
 
         <!--buttons ok and cancel-->
-        <Button Name="Ok" Command="{Binding OkButtonClickedCommand}"
+        <Button Command="{Binding OkButtonClickedCommand}"
                 Grid.Row="9" Grid.Column="0"
                 Width="50" Height="20" >Ok</Button>
-        <Button Name="Cancel" IsCancel="True"
+        <Button IsCancel="True"
                 Grid.Row="9" Grid.Column="1"
                 Width="50" Height="20" >Cancel</Button>
 
         <!--label for to give feed back about the given class name-->
-        <Label Name="feedBackLabel" Content="{Binding FeedBackText}"
+        <Label Content="{Binding FeedBackText}"
                Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2"></Label>
     </Grid>
 </Window>

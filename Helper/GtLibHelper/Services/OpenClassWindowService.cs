@@ -84,6 +84,15 @@ namespace GtLibHelper.Services
 
             _enumeratorsWindow.ShowDialog();
         }
+        public void OpenDeleteClassWindow(GtLibClassModel model) 
+        {
+            DeleteClassWindow deleteClassWindow = new DeleteClassWindow();
+            DeleteClassViewModel deleteClassViewModel = new DeleteClassViewModel(model);
+
+            deleteClassWindow.DataContext = deleteClassViewModel;
+
+            deleteClassWindow.ShowDialog();
+        }
 
         private void OkButtonClicked_Handler(object sender, EventArgs e)
         {

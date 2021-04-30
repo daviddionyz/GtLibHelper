@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GtLibHelper.View"
         mc:Ignorable="d"
-        Title="Class" MinHeight="420" MinWidth="250" MaxHeight="420" MaxWidth="250">
+        Title="Class" MinHeight="420" MinWidth="250" MaxHeight="420" MaxWidth="300">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -25,36 +25,34 @@
         </Grid.RowDefinitions>
 
         <!--text box for name and label-->
-        <Label Name="labelForName" 
-               Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">Please give the name of class</Label>
-        <TextBox Name="Name" Text="{Binding ClassName, Mode=TwoWay}"
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">Please give the name of class</Label>
+        <TextBox Text="{Binding ClassName, Mode=TwoWay}" VerticalAlignment="Center"
                  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
                  Height="20" Width="250"></TextBox>
 
         <!--Text box for items-->
-        <Label Name="labelForItem"
-               Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">Please give the type of the item</Label>
-        <TextBox Name="itemType" Text="{Binding Item, Mode=TwoWay}"
+        <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">Please give the type of the item</Label>
+        <TextBox Text="{Binding Item, Mode=TwoWay}" VerticalAlignment="Center"
                    Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
                    Height="20" Width="250"></TextBox>
 
         <!--Text box for T-->
-        <Label Name="labelForT" Content="{Binding LabelForT}"
+        <Label Content="{Binding LabelForT}"
                Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"></Label>
-        <TextBox Name="TType" Text="{Binding T, Mode=TwoWay}"
+        <TextBox Text="{Binding T, Mode=TwoWay}" VerticalAlignment="Center"
                    Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"
                    Height="20" Width="250"></TextBox>
 
-        <TextBox Name="mainText" IsReadOnly="true" Text="{Binding ClassText, Mode=OneWay}"
-                 Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left"
-                 Height="200" Width="235" MaxHeight="200" MaxWidth="235"
+        <TextBox IsReadOnly="true" Text="{Binding ClassText, Mode=OneWay}"
+                 Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center"
+                 Height="200" Width="295" MaxHeight="200" MaxWidth="295"
                  ></TextBox>
 
         <!--buttons ok and cancel-->
-        <Button Name="Ok" Command="{Binding OkButtonClickedCommand}"
+        <Button Command="{Binding OkButtonClickedCommand}"
                 Grid.Row="7" Grid.Column="0"
                 Width="50" Height="20" >Ok</Button>
-        <Button Name="Cancel" IsCancel="True"
+        <Button IsCancel="True"
                 Grid.Row="7" Grid.Column="1"
                 Width="50" Height="20" >Cancel</Button>
 

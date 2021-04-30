@@ -3,13 +3,10 @@ using System;
 using System.Collections.Generic;
 using GtLibHelper.Services;
 using System.Collections.ObjectModel;
-using GtLibHelper.OwnEventArgs;
 using GtLibHelper.Persistence;
-using Microsoft.Win32;
-using System.Windows;
 using Ookii.Dialogs.Wpf;
-using System.Windows.Forms;
 using System.Diagnostics;
+using GtLibHelper.OwnEventArgs;
 
 namespace GtLibHelper.ViewModel
 {
@@ -23,12 +20,13 @@ namespace GtLibHelper.ViewModel
         private GtLibClassModel _gtLibClassModel;
         private ObservableCollection<AbstractLibClass> _gtLibClasses;
 
+        
+
         private String _headers;
         private String _inputTxt;
 
         private DataAccess _dataAccess;
         private String _saveDirectoryPath;
-        private String _projectSaveDirectoryPath;
         public ObservableCollection<AbstractLibClass> GtLibClassesObservable
         {
             get
@@ -69,27 +67,28 @@ namespace GtLibHelper.ViewModel
 
         #region Delegate Commands
 
-        public DelegateCommand EnumeratorButtonClickedCommand { get; private set; }
-        public DelegateCommand SelectionButtonClickedCommand { get; private set; }
-        public DelegateCommand CountingButtonClickedCommand { get; private set; }
-        public DelegateCommand SummnationButtonClickedCommand { get; private set; }
-        public DelegateCommand LinSearchButtonClickedCommand { get; private set; }
-        public DelegateCommand MaxSearchButtonClickedCommand { get; private set; }
+        public DelegateCommand EnumeratorCommand { get; private set; }
+        public DelegateCommand SelectionCommand { get; private set; }
+        public DelegateCommand CountingCommand { get; private set; }
+        public DelegateCommand SummnationCommand { get; private set; }
+        public DelegateCommand LinSearchCommand { get; private set; }
+        public DelegateCommand MaxSearchCommand { get; private set; }
 
-        public DelegateCommand StructButtonClickedCommand { get; private set; }
-        public DelegateCommand ArrayEnumeratorButtonClickedCommand { get; private set; }
-        public DelegateCommand StringEnumeratorButtonClickedCommand { get; private set; }
-        public DelegateCommand IntervalEnumeratorButtonClickedCommand { get; private set; }
-        public DelegateCommand SeqInFileEnumeratorButtonClickedCommand { get; private set; }
+        public DelegateCommand StructCommand { get; private set; }
+        public DelegateCommand ArrayEnumeratorCommand { get; private set; }
+        public DelegateCommand StringEnumeratorCommand { get; private set; }
+        public DelegateCommand IntervalEnumeratorCommand { get; private set; }
+        public DelegateCommand SeqInFileEnumeratorCommand { get; private set; }
 
-        public DelegateCommand SaveButtonClickedCommand { get; private set; }
-        public DelegateCommand RunButtonClickedCommand { get; private set; }
+        public DelegateCommand SaveCommand { get; private set; }
+        public DelegateCommand RunCommand { get; private set; }
 
-        public DelegateCommand NewProjectButtonClickedCommand { get; private set; }
-        public DelegateCommand LoadProjectButtonClickedCommand { get; private set; }
-        public DelegateCommand SaveProjectButtonClickedCommand { get; private set; }
+        public DelegateCommand NewProjectCommand { get; private set; }
+        public DelegateCommand LoadProjectCommand { get; private set; }
+        public DelegateCommand SaveProjectCommand { get; private set; }
 
         public DelegateCommand ExitButtonCommand { get; private set; }
+        public DelegateCommand DeleteClassCommand { get; private set; }
 
         #endregion
 
@@ -106,26 +105,27 @@ namespace GtLibHelper.ViewModel
 
             ExitButtonCommand = new DelegateCommand(param => OnExitButton());
 
-            EnumeratorButtonClickedCommand = new DelegateCommand(param => OnEnumeratorCreate());
-            SelectionButtonClickedCommand = new DelegateCommand(param => OnSelectingCreate());
-            CountingButtonClickedCommand = new DelegateCommand(param => OnCountingCreate());
-            SummnationButtonClickedCommand = new DelegateCommand(param => OnSummnationCreate());
-            LinSearchButtonClickedCommand = new DelegateCommand(param => OnLinSearchCreate());
-            MaxSearchButtonClickedCommand = new DelegateCommand(param => OnMaxSearchCreate());
+            EnumeratorCommand = new DelegateCommand(param => OnEnumeratorCreate());
+            SelectionCommand = new DelegateCommand(param => OnSelectingCreate());
+            CountingCommand = new DelegateCommand(param => OnCountingCreate());
+            SummnationCommand = new DelegateCommand(param => OnSummnationCreate());
+            LinSearchCommand = new DelegateCommand(param => OnLinSearchCreate());
+            MaxSearchCommand = new DelegateCommand(param => OnMaxSearchCreate());
+            StructCommand = new DelegateCommand(param => OnOwnStructCreate());
 
-            ArrayEnumeratorButtonClickedCommand = new DelegateCommand(param => OnAddEnumerator("ArrayEnumerator"));
-            StringEnumeratorButtonClickedCommand = new DelegateCommand(param => OnAddEnumerator("StringStreamEnumerator"));
-            IntervalEnumeratorButtonClickedCommand = new DelegateCommand(param => OnAddEnumerator("IntervalEnumerator"));
-            SeqInFileEnumeratorButtonClickedCommand = new DelegateCommand(param => OnAddEnumerator("SeqInFileEnumerator"));
+            ArrayEnumeratorCommand = new DelegateCommand(param => OnAddEnumerator("ArrayEnumerator"));
+            StringEnumeratorCommand = new DelegateCommand(param => OnAddEnumerator("StringStreamEnumerator"));
+            IntervalEnumeratorCommand = new DelegateCommand(param => OnAddEnumerator("IntervalEnumerator"));
+            SeqInFileEnumeratorCommand = new DelegateCommand(param => OnAddEnumerator("SeqInFileEnumerator"));
 
-            SaveButtonClickedCommand = new DelegateCommand(param => SaveCode());
-            RunButtonClickedCommand = new DelegateCommand(param => RunCode());
+            SaveCommand = new DelegateCommand(param => SaveCode());
+            RunCommand = new DelegateCommand(param => RunCode());
 
-            NewProjectButtonClickedCommand  = new DelegateCommand(param => NewProject());
-            LoadProjectButtonClickedCommand = new DelegateCommand(param => LoadProject());
-            SaveProjectButtonClickedCommand = new DelegateCommand(param => SaveProject());
+            NewProjectCommand  = new DelegateCommand(param => NewProject());
+            LoadProjectCommand = new DelegateCommand(param => LoadProject());
+            SaveProjectCommand = new DelegateCommand(param => SaveProject());
 
-            StructButtonClickedCommand = new DelegateCommand(param => OnOwnStructCreate());
+            DeleteClassCommand = new DelegateCommand(param => OnDeleteClass());
 
             GenerateMainFunc();
             PutingGtLibClassOnWindow();
@@ -179,6 +179,7 @@ namespace GtLibHelper.ViewModel
         }
         #endregion
 
+        #region Save and Run
         private void SaveCode()
         {
             var ookiiDialog = new VistaFolderBrowserDialog();
@@ -186,8 +187,15 @@ namespace GtLibHelper.ViewModel
             {
                 _saveDirectoryPath = ookiiDialog.SelectedPath;
             }
-
-            _dataAccess.SaveCppCode(_saveDirectoryPath,_gtLibClassModel,Headers,InputTxt);
+            try
+            {
+                _dataAccess.SaveCppCode(_saveDirectoryPath, _gtLibClassModel, Headers, InputTxt);
+                System.Windows.MessageBox.Show("Sikeres mentés");
+            }
+            catch (Exception e) 
+            {
+                System.Windows.MessageBox.Show(e.Message);
+            }
         }
         private void RunCode()
         {
@@ -195,19 +203,23 @@ namespace GtLibHelper.ViewModel
             {
                 ProcessStartInfo psi = new ProcessStartInfo();
                 psi.FileName = "cmd.exe";
-                psi.Arguments = @"/C cd c:\" + $"& cd {_saveDirectoryPath}" + " & g++ main.cpp" + "& a.exe" + "& pause";
+                if (InputTxt != "")
+                    psi.Arguments = @"/C cd c:\" + $"& cd {_saveDirectoryPath}" + " & g++ main.cpp" + "& a.exe input.txt" + "& pause";
+                else
+                    psi.Arguments = @"/C cd c:\" + $"& cd {_saveDirectoryPath}" + " & g++ main.cpp" + "& a.exe" + "& pause";
                 using (Process p = Process.Start(psi))
                 {
                     p.WaitForExit();
                 }
-
             }
             else
             {
-                // message box 
+                System.Windows.MessageBox.Show("Nincs mentett fájl.");
             }
         }
+        #endregion
 
+        #region Project save, load, new
         private void NewProject() 
         {
             //messagebox to be sure 
@@ -232,8 +244,15 @@ namespace GtLibHelper.ViewModel
             {
                 path = ookiiDialog.FileName;
             }
-
-            _dataAccess.SaveProject(path, _gtLibClassModel,Headers,InputTxt);
+            try
+            {
+                _dataAccess.SaveProject(path, _gtLibClassModel, Headers, InputTxt);
+                System.Windows.MessageBox.Show("Sikeres mentés"); 
+            }
+            catch (DataAccessException e)
+            {
+                System.Windows.MessageBox.Show(e.Message);
+            }
         }
         private void LoadProject()
         {
@@ -245,15 +264,40 @@ namespace GtLibHelper.ViewModel
             {
                 path = ookiiDialog.FileName;
             }
-            _gtLibClassModel.Clear();
+            GtLibClassModel copyOfModel = new GtLibClassModel(_gtLibClassModel);
 
-            (string, string) headerAndInput = _dataAccess.LoadProject(path,_gtLibClassModel);
+            try { 
+                _gtLibClassModel.Clear();
+                
+                (string, string) headerAndInput = _dataAccess.LoadProject(path,_gtLibClassModel);
 
-            Headers  = headerAndInput.Item1;
-            InputTxt = headerAndInput.Item2;
+                Headers  = headerAndInput.Item1;
+                InputTxt = headerAndInput.Item2;
 
+                PutingGtLibClassOnWindow();
+                System.Windows.MessageBox.Show("Sikeres betöltés");
+            }
+            catch (DataAccessException e)
+            {
+                System.Windows.MessageBox.Show(e.Message);
+                _gtLibClassModel = copyOfModel;
+            }
+        }
+        #endregion
+
+
+        public void DragAndDropClassManager(string source, string destination) 
+        {
+            _gtLibClassModel.DragAndDropClassInstantiation(source,destination);
             PutingGtLibClassOnWindow();
         }
+        private void OnDeleteClass() 
+        {
+            _openClassWindowService.OpenDeleteClassWindow(_gtLibClassModel);
+            PutingGtLibClassOnWindow();
+        }
+
+
 
         private void GenerateMainFunc()
         {
@@ -275,6 +319,7 @@ namespace GtLibHelper.ViewModel
         {
             PutingGtLibClassOnWindow();
         }
+
 
         private void EnumeratorClassCreated_Handler(object sender, EnumeratorCreatedEventArgs e) 
         {

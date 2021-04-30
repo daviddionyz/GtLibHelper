@@ -2,89 +2,114 @@
 using GtLibHelper.GtLibClasses.Implementable;
 using GtLibHelper.Services;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
+
 
 namespace GtLibHelper.Persistence
 {
     public class DataAccess
     {
-
         public void SaveCppCode(string path, GtLibClassModel model, string header, string inputTxt) 
         {
-            SaveGtLibClassHpp(path);
+            try
+            {
+                SaveGtLibClassHpp(path);
 
-            if (inputTxt != null) 
-            {
-                StreamWriter inputTxtWriter = new StreamWriter(path + "\\input.txt");
-                inputTxtWriter.WriteLine(inputTxt);
-                inputTxtWriter.Close();
-                inputTxtWriter.Dispose();
-            }
-            
-            StreamWriter writer = new StreamWriter(path + "\\main.cpp");
-            //headers
-            writer.WriteLine(header);
+                if (inputTxt != null)
+                {
+                    StreamWriter inputTxtWriter = new StreamWriter(path + "\\input.txt");
+                    inputTxtWriter.WriteLine(inputTxt);
+                    inputTxtWriter.Close();
+                    inputTxtWriter.Dispose();
+                }
 
-            //class content
-            foreach (AbstractLibClass member in model.ListOfLibClasses)
-            {
-                if (member.Type != "Main")
+                StreamWriter writer = new StreamWriter(path + "\\main.cpp");
+                //headers
+                writer.WriteLine(header);
+                writer.Flush();
+                //class content
+                foreach (AbstractLibClass member in model.ListOfLibClasses)
                 {
-                    writer.WriteLine(member.Text);
+                    if (member.Type != "Main")
+                    {
+                        writer.WriteLine(member.Text);
+                        writer.Flush();
+                    }
                 }
-            }
-            //main
-            foreach (AbstractLibClass member in model.ListOfLibClasses)
-            {
-                if (member.Type == "Main")
+                //main
+                foreach (AbstractLibClass member in model.ListOfLibClasses)
                 {
-                    writer.WriteLine(member.Text);
-                    break;
+                    if (member.Type == "Main")
+                    {
+                        writer.WriteLine(member.Text);
+                        break;
+                    }
                 }
+                writer.Close();
+                writer.Dispose();
             }
-            writer.Close();
-            writer.Dispose();
+            catch(Exception)
+            {
+                throw new DataAccessException("main.cpp mentése sikertelen.");
+            }
         }
-        public void SaveProject(string path, GtLibClassModel model, string header, string inputTxt) 
+        public void SaveProject(string path, GtLibClassModel model, string header, string inputTxt)
         {
-            StreamWriter writer = new StreamWriter(path);
+            try 
+            { 
+                StreamWriter writer = new StreamWriter(path);
 
-            string delimeter               = "&##&##delimeter##&##&";
-            string delimeterClassSeparator = "@@@&&&{{{class}}}&&&@@@";
-            writer.WriteLine(header);
-            writer.WriteLine(delimeter);
-            writer.WriteLine(inputTxt);
-            writer.WriteLine(delimeter);
-            foreach (AbstractLibClass member in model.ListOfLibClasses) 
+                string delimeter               = "&##&##delimeter##&##&";
+                string delimeterClassSeparator = "@@@&&&{{{class}}}&&&@@@";
+                writer.WriteLine(header);
+                writer.WriteLine(delimeter);
+                writer.WriteLine(inputTxt);
+                writer.WriteLine(delimeter);
+                writer.Flush();
+                foreach (AbstractLibClass member in model.ListOfLibClasses) 
+                {
+                    SaveGtLibClasses(writer, member);
+                    writer.WriteLine(delimeterClassSeparator);
+                    writer.Flush();
+                }
+
+                writer.Close();
+                writer.Dispose();
+
+            }
+            catch(DataAccessException)
             {
-                SaveGtLibClasses(writer, member);
-                writer.WriteLine(delimeterClassSeparator);
+                throw new DataAccessException("project mentése sikertelen.");
             }
         }
         public (string,string) LoadProject(string path, GtLibClassModel model)
         {
-            StreamReader reader = new StreamReader(path);
+            try { 
+                StreamReader reader = new StreamReader(path);
 
-            string delimeterMain               = "&##&##delimeter##&##&";
-            string delimeterClassSeparator     = "@@@&&&{{{class}}}&&&@@@";
+                string delimeterMain               = "&##&##delimeter##&##&";
+                string delimeterClassSeparator     = "@@@&&&{{{class}}}&&&@@@";
 
-            string header   = "";
-            string inputTxt = "";
+                string header   = "";
+                string inputTxt = "";
 
-            string[] input = reader.ReadToEnd().Split(delimeterMain);
-            header   = input[0];
-            inputTxt = input[1];
-            foreach (string member in input[2].Split(delimeterClassSeparator)) 
-            {
-                LoadGtLibClasses(member, model);
+                string[] input = reader.ReadToEnd().Split(delimeterMain);
+                header   = input[0];
+                inputTxt = input[1];
+                foreach (string member in input[2].Split(delimeterClassSeparator)) 
+                {
+                    LoadGtLibClasses(member, model);
+                }
+
+                return (header,inputTxt);
             }
-
-            return (header,inputTxt);
+            catch (Exception)
+            {
+                throw new DataAccessException("project betöltés sikertelen.");
+            }
         }
 
-        public void SaveGtLibClasses(StreamWriter writer,AbstractLibClass gtLibClass) 
+        private void SaveGtLibClasses(StreamWriter writer,AbstractLibClass gtLibClass) 
         {
             string delimeter = "#&&#&&delimeter&&#&&#";
 
@@ -184,8 +209,7 @@ namespace GtLibHelper.Persistence
                     break;
             }
         }
-
-        public void LoadGtLibClasses(string text, GtLibClassModel model) 
+        private void LoadGtLibClasses(string text, GtLibClassModel model) 
         {
             string delimeterClassPartSeparator = "#&&#&&delimeter&&#&&#";
 
@@ -232,15 +256,14 @@ namespace GtLibHelper.Persistence
             }
 
         }
-
         private void SaveGtLibClassHpp(string path) 
         {
             path += "\\gtlib";
 
             Directory.CreateDirectory(path);
 
-            File.WriteAllText(path + "\\arrayenumerator.hpp"       , Properties.Resources.arrayenumerator);
             File.WriteAllText(path + "\\counting.hpp"              , Properties.Resources.counting);
+            File.WriteAllText(path + "\\arrayenumerator.hpp"       , Properties.Resources.arrayenumerator);
             File.WriteAllText(path + "\\enumerator.hpp"            , Properties.Resources.enumerator);
             File.WriteAllText(path + "\\intervalenumerator.hpp"    , Properties.Resources.intervalenumerator);
             File.WriteAllText(path + "\\linsearch.hpp"             , Properties.Resources.linsearch);

@@ -36,6 +36,12 @@ namespace GtLibHelper.Services
         {
             ListOfLibClasses = new List<AbstractLibClass>();
         }
+        public GtLibClassModel(GtLibClassModel model) 
+        {
+            ListOfLibClasses = new List<AbstractLibClass>();
+
+            ListOfLibClasses.AddRange(model.ListOfLibClasses);
+        }
 
         public (bool, String) CheckTheClassName(string name)
         {
@@ -54,7 +60,6 @@ namespace GtLibHelper.Services
 
             return (true, "Ok");
         }
-
         public bool CreateNewLibClass(String name, String type)
         {
             switch (type)
@@ -87,7 +92,6 @@ namespace GtLibHelper.Services
 
             return true;
         }
-
         public void RefreshLibClassData(String name,String item, String T, String compare, String text)
         {
             switch (CurrentLibClass.Type)
@@ -160,7 +164,6 @@ namespace GtLibHelper.Services
                     break;
                 }
             }
-
         public void AddCurrentLibClass() 
         {
             if (CurrentLibClass != null) 
@@ -169,7 +172,6 @@ namespace GtLibHelper.Services
                 CurrentLibClass = null;
             }
         }
-
         public string GetHeaderForClass(string type)
         {
             switch (type)
@@ -185,11 +187,75 @@ namespace GtLibHelper.Services
             }
             return null;
         }
-
         public void Clear() 
         {
             ListOfLibClasses = new List<AbstractLibClass>();
             CurrentLibClass = null;
+        }
+        public void DeleteClassByName(String name)
+        {
+            ListOfLibClasses.Remove(ListOfLibClasses.Find(member => member.Name.Equals(name)));
+        }
+        public void DragAndDropClassInstantiation(string source, string destination) 
+        {
+            if (source.Equals(destination) || source.Equals("main"))
+                return;
+
+            if (GetTypeByName(source).Equals("Struct"))
+            {
+                InsertClassInstantiation(source, destination, "struct");
+            }
+            else 
+            {
+                InsertClassInstantiation(source, destination, "");
+            }
+        }
+
+        private string GetTypeByName(string name) 
+        {
+            return ListOfLibClasses.Find(member => member.Name.Equals(name)).Type;
+        }
+
+        private void InsertClassInstantiation(string sourceClassName,string name, string prefix) 
+        {
+            AbstractLibClass selectedClass = (ListOfLibClasses.Find(m => m.Name.Equals(name)));
+
+            string[] str;
+
+            if (selectedClass.Text.Contains("private:"))
+            {
+                str = selectedClass.Text.Split("private:");
+                selectedClass.Text = str[0]
+                    + "private:\r\n"
+                    + $"\t{prefix} {sourceClassName} {sourceClassName.ToLower()}; \r\n"
+                    + str[1];
+            }
+            else if (selectedClass.Text.Contains("public:"))
+            {
+                str = selectedClass.Text.Split("public:");
+                selectedClass.Text = str[0]
+                    + "public:\r\n"
+                    + $"\t{prefix} {sourceClassName} {sourceClassName.ToLower()}; \r\n"
+                    + str[1];
+            }
+            else if (selectedClass.Text.Contains("protected:"))
+            {
+                str = selectedClass.Text.Split("protected:");
+                selectedClass.Text = str[0]
+                    + "protected:\r\n"
+                    + $"\t{prefix} {sourceClassName} {sourceClassName.ToLower()}; \r\n"
+                    + str[1];
+            }
+            else
+            {
+                str = selectedClass.Text.Split("{");
+                selectedClass.Text = str[0]
+                    + "{\r\n"
+                    + $"\t{prefix} {sourceClassName} {sourceClassName.ToLower()}; \r\n"
+                    + str[1];
+            }
+
+            
         }
     }
 }

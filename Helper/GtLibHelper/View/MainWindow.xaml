@@ -4,10 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GtLibHelper"
-        xmlns:vm="clr-namespace:GtLibHelper.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1000"  Width="1200">
-    <Grid>
+        Title="MainWindow" Height="1000"  Width="1200"  >
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
@@ -19,13 +18,14 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <DockPanel VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="0">
             <Menu DockPanel.Dock="Top">
-                <MenuItem Header="File">
-                    <MenuItem Header="New Project"  Command="{Binding NewProjectButtonClickedCommand}" />
-                    <MenuItem Header="Load Project" Command="{Binding LoadProjectButtonClickedCommand}" />
-                    <MenuItem Header="Save Project" Command="{Binding SaveProjectButtonClickedCommand}" />
+                <MenuItem Header="Menu">
+                    <MenuItem Header="New Project"  Command="{Binding NewProjectCommand}" />
+                    <MenuItem Header="Load Project" Command="{Binding LoadProjectCommand}" />
+                    <MenuItem Header="Save Project" Command="{Binding SaveProjectCommand}" />
                     <Separator />
                     <MenuItem Header="Exit" Command="{Binding ExitButtonCommand}"/>
                 </MenuItem>
@@ -34,41 +34,50 @@
         <!--Implementabel classes-->
         <StackPanel HorizontalAlignment="Center" Grid.Column="3" Grid.Row="1" Orientation="Vertical">
             <!--struct-->
-            <Button Height="30" Width="Auto" Name="Struct" Content="Struct" Command="{Binding StructButtonClickedCommand}" />
+            <Button Height="30" Width="120" Name="Struct" Content="Struct" Command="{Binding StructCommand}" />
             <!--1 param classes-->
-            <Button Height="30" Width="Auto" Name="Enumerator" Content="Enumerator" Command="{Binding EnumeratorButtonClickedCommand}" />
-            <Button Height="30" Width="120" Name="Selection" Content="Selection" Command="{Binding SelectionButtonClickedCommand}"/>
-            <Button  Height="30" Width="Auto" Name="Counting" Content="Counting" Command="{Binding CountingButtonClickedCommand}"/>
+            <Button Height="30" Width="Auto" Name="Enumerator" Content="Enumerator" Command="{Binding EnumeratorCommand}" />
+            <Button Height="30" Width="Auto" Name="Selection" Content="Selection" Command="{Binding SelectionCommand}"/>
+            <Button  Height="30" Width="Auto" Name="Counting" Content="Counting" Command="{Binding CountingCommand}"/>
             <!--2 param classes-->
-            <Button  Height="30" Width="Auto" Name="Summnation" Content="Summnation" Command="{Binding SummnationButtonClickedCommand}"/>
-            <Button  Height="30" Width="Auto" Name="LinSearch" Content="Lin search" Command="{Binding LinSearchButtonClickedCommand}"/>
+            <Button  Height="30" Width="Auto" Name="Summnation" Content="Summnation" Command="{Binding SummnationCommand}"/>
+            <Button  Height="30" Width="Auto" Name="LinSearch" Content="Lin search" Command="{Binding LinSearchCommand}"/>
             <!--3 param classes-->
-            <Button Height="30" Width="Auto" Name="MaxSearch" Content="Max search" Command="{Binding MaxSearchButtonClickedCommand}"/>
+            <Button Height="30" Width="Auto" Name="MaxSearch" Content="Max search" Command="{Binding MaxSearchCommand}"/>
         </StackPanel>
         <!--Just useabel classes-->
         <StackPanel Grid.Column="3" Grid.Row="2" Orientation="Vertical">
-            <Button Height="30" Width="Auto" Name="ArrayEnumerator" Content="Array enumerator" Command="{Binding ArrayEnumeratorButtonClickedCommand}"/>
-            <Button Height="30" Width="Auto" Name="StringEnumerator" Content="String enumerator"  Command="{Binding StringEnumeratorButtonClickedCommand}"/>
-            <Button Height="30" Width="Auto" Name="IntervalEnumerator" Content="Interval enumerator"  Command="{Binding IntervalEnumeratorButtonClickedCommand}"/>
-            <Button Height="30" Width="Auto" Name="SeqInFileEnumerator" Content="Seq in file Enumerator"  Command="{Binding SeqInFileEnumeratorButtonClickedCommand}"/>
+            <Button Height="30" Width="Auto" Name="ArrayEnumerator" Content="Array enumerator" Command="{Binding ArrayEnumeratorCommand}"/>
+            <Button Height="30" Width="Auto" Name="StringEnumerator" Content="String enumerator"  Command="{Binding StringEnumeratorCommand}"/>
+            <Button Height="30" Width="Auto" Name="IntervalEnumerator" Content="Interval enumerator"  Command="{Binding IntervalEnumeratorCommand}"/>
+            <Button Height="30" Width="Auto" Name="SeqInFileEnumerator" Content="Seq in file Enumerator"  Command="{Binding SeqInFileEnumeratorCommand}"/>
+        </StackPanel>
+        <!--Modifier buttons-->
+        <StackPanel Grid.Row="3" Grid.Column="3">
+            <Button Height="30" Width="Auto" Content="Delete Class" Command="{Binding DeleteClassCommand}"/>
         </StackPanel>
         <!--Save and Run section-->
-        <StackPanel VerticalAlignment="Bottom" Grid.Column="3" Grid.Row="3">
-            <Button DockPanel.Dock="Bottom" Height="30" Name="Save" Content="Save" Command="{Binding SaveButtonClickedCommand}"/>
-            <Button DockPanel.Dock="Bottom" Height="30" Name="Run" Content="Run" Command="{Binding RunButtonClickedCommand}"/>
+        <StackPanel VerticalAlignment="Bottom" Grid.Column="3" Grid.Row="4">
+            <Button DockPanel.Dock="Bottom" Height="30" Name="Save" Content="Save" Command="{Binding SaveCommand}"/>
+            <Button DockPanel.Dock="Bottom" Height="30" Name="Run" Content="Run" Command="{Binding RunCommand}"/>
         </StackPanel>
-        <!--Gt Lib Class showing part-->
-        <ListView Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="1" 
-                  ItemsSource="{Binding GtLibClassesObservable}"
+       
+            <!--Gt Lib Class showing part-->
+        <ListView x:Name="ListView" 
+                  Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="1" 
+                  ItemsSource="{Binding GtLibClassesObservable, Mode=TwoWay}"
                   IsSynchronizedWithCurrentItem="True"
-                  AllowDrop="True">
-            <ListView.ItemTemplate>
-                <DataTemplate>
+                  AllowDrop="True" 
+                    
+                  PreviewMouseDown="ListView_PreviewMouseDown"
+                  DragDrop.Drop="ListView_Drop">
+            <ListView.ItemTemplate >
+                <DataTemplate >
                     <TextBox AcceptsReturn="True" AcceptsTab="True" IsReadOnly="False" AllowDrop="True" TextWrapping="Wrap"
-                             Text="{Binding Text, Mode=TwoWay}" >
-                        <!--DragDrop.DragEnter="{Binding DragEnter}" DragDrop.Drop="{Binding DragDrop}">-->
-                    </TextBox>
+                             Text="{Binding Text, Mode=TwoWay}">
+                    </TextBox >
                 </DataTemplate>
+
             </ListView.ItemTemplate>
 
         </ListView>
@@ -82,7 +91,7 @@
         </StackPanel>
 
         <!--input txt-->
-        <StackPanel Grid.Row="3" Grid.Column="1" Height="80" Grid.ColumnSpan="2">
+        <StackPanel Grid.Row="4" Grid.Column="1" Height="80" Grid.ColumnSpan="2">
             <Label>
                 Itt tudod meg adni az input txt tartalmát.
             </Label>
@@ -91,22 +100,3 @@
         </StackPanel>
     </Grid>
 </Window>
-
-<!--ItemsControl >
-    -->
-    <!--<ItemsControl.ItemsPanel>
-                    -->
-    <!--<ItemsPanelTemplate>
-                        <UniformGrid Columns="8" Rows="5" AllowDrop="True"/>
-                    </ItemsPanelTemplate>-->
-    <!--
-                </ItemsControl.ItemsPanel>-->
-    <!--
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <TextBox AcceptsReturn="True" AcceptsTab="True" IsReadOnly="False" AllowDrop="True" TextWrapping="Wrap"
-                                 DragDrop.DragEnter="{Binding DragEnter}" DragDrop.Drop="{Binding DragDrop}">
-                        </TextBox>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>-->

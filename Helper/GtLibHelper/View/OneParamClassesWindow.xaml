@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GtLibHelper.View"
         mc:Ignorable="d"
-        Title="Class" MinHeight="380" MinWidth="250" MaxHeight="380" MaxWidth="250">
+        Title="Class" MinHeight="380" MinWidth="300" MaxHeight="380" MaxWidth="300">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="150"></ColumnDefinition>
+            <ColumnDefinition Width="150"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -21,36 +21,34 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        
+
         <!--text box for name and label-->
-        <Label Name="labelForName" 
-               Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">Please give the name of class</Label>
-        <TextBox Name="name" Text="{Binding ClassName, Mode=TwoWay}"
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" >Please give the name of class</Label>
+        <TextBox Text="{Binding ClassName, Mode=TwoWay}" VerticalAlignment="Center"
                  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
-                 Height="20" Width="250"></TextBox>
-        
+                 Height="20" Width="250"/>
+
         <!--Text box for items-->
-        <Label Name="labelForItem"
-               Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">Please give the type of the item</Label>
-        <TextBox Name="itemType" Text="{Binding Item, Mode=TwoWay}"
+        <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">Please give the type of the item</Label>
+        <TextBox Text="{Binding Item, Mode=TwoWay}" VerticalAlignment="Center"
                    Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
-                   Height="20" Width="250"></TextBox>
+                   Height="20" Width="250"/>
 
 
-        <TextBox Name="mainText" IsReadOnly="true" Text="{Binding ClassText, Mode=OneWay}"
-                 Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left"
-                 Height="200" Width="240" MaxHeight="200" MaxWidth="240"></TextBox>
-        
+        <TextBox IsReadOnly="true" Text="{Binding ClassText, Mode=OneWay}"
+                 Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center"
+                 Height="200" MaxHeight="200" MaxWidth="295"/>
+
         <!--buttons ok and cancel-->
-        <Button Name="Ok" Command="{Binding OkButtonClickedCommand}"
-                Grid.Column="0" Grid.Row="5"
+        <Button Command="{Binding OkButtonClickedCommand}"
+                Grid.Column="0" Grid.Row="5" 
                 Width="50" Height="20" >Ok</Button>
-        <Button Name="Cancel" IsCancel="True" 
+        <Button IsCancel="True" 
                 Grid.Column="1" Grid.Row="5"
-                Width="50" Height="20"  >Cancel</Button>
-        
+                Width="50" Height="20" >Cancel</Button>
+
         <!--label for to give feed back about the given class name-->
-        <Label Name="feedBackLabel" Content="{Binding FeedBackText}"
+        <Label Content="{Binding FeedBackText}"
                Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2"></Label>
     </Grid>
 </Window>

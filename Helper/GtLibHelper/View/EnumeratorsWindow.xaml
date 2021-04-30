@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GtLibHelper.View"
         mc:Ignorable="d"
-        Title="EnumeratorsWindow" Height="500" Width="400">
-    <StackPanel>
+        Title="EnumeratorsWindow" Width="400">
+    <StackPanel Height="Auto">
         <Label>
-            Válaszaki, hogy melyik osztájhoz szeretné hozzá addni az enumeratort
+            Válaszon ki egy osztályt.
         </Label>
-        <ListBox ItemsSource="{Binding GtLibClassesNames}" SelectedItem="{Binding SelectedClass}">
+        <ListBox ItemsSource="{Binding GtLibClassesNames}" SelectedItem="{Binding SelectedClassName}">
         </ListBox>
         <Label>
             A kiválasztot osztály:
