@@ -84,7 +84,7 @@
         <!--include headers-->
         <StackPanel Grid.Row="1" Grid.Column="2" Width="170" Height="300">
             <Label>
-                Includ-ok:
+                Includes:
             </Label>
             <TextBox AcceptsReturn="True" AcceptsTab="True" IsReadOnly="False" Height="200"
                      Text="{Binding Headers, Mode=TwoWay}"></TextBox>
@@ -93,7 +93,7 @@
         <!--input txt-->
         <StackPanel Grid.Row="4" Grid.Column="1" Height="80" Grid.ColumnSpan="2">
             <Label>
-                Itt tudod meg adni az input txt tartalmát.
+                Here you can enter the content of input txt
             </Label>
             <TextBox AcceptsReturn="True" AcceptsTab="True" IsReadOnly="False" MaxHeight="50" Height="50"
                      Text="{Binding InputTxt, Mode=TwoWay}"></TextBox>

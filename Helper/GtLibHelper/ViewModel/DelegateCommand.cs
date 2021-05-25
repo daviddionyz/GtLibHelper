@@ -5,20 +5,20 @@ namespace GtLibHelper.ViewModel
 {
     public class DelegateCommand : ICommand
     {
-        private readonly Action<object> _execute; // a tevékenységet végrehajtó lambda-kifejezés
-        private readonly Func<object, bool> _canExecute; // a tevékenység feltételét ellenőző lambda-kifejezés
+        private readonly Action<object> _execute; 
+        private readonly Func<object, bool> _canExecute;
 
         /// <summary>
-        /// Parancs létrehozása.
+        /// Command creation
         /// </summary>
-        /// <param name="execute">Végrehajtandó tevékenység.</param>
+        /// <param name="execute">Activity to be carried out</param>
         public DelegateCommand(Action<object> execute) : this(null, execute) { }
 
         /// <summary>
-        /// Parancs létrehozása.
+        /// Command creation
         /// </summary>
-        /// <param name="canExecute">Végrehajthatóság feltétele.</param>
-        /// <param name="execute">Végrehajtandó tevékenység.</param>
+        /// <param name="canExecute">Condition of enforceability</param>
+        /// <param name="execute">Activity to be carried out</param>
         public DelegateCommand(Func<object, bool> canExecute, Action<object> execute)
         {
             if (execute == null)
@@ -31,24 +31,24 @@ namespace GtLibHelper.ViewModel
         }
 
         /// <summary>
-        /// Végrehajthatóság változásának eseménye.
+        /// Event of change in enforceability
         /// </summary>
         public event EventHandler CanExecuteChanged;
 
         /// <summary>
-        /// Végrehajthatóság ellenőrzése
+        /// Verification of enforceability 
         /// </summary>
-        /// <param name="parameter">A tevékenység paramétere.</param>
-        /// <returns>Igaz, ha a tevékenység végrehajtható.</returns>
+        /// <param name="parameter">Parameter of activity</param>
+        /// <returns>True if the activity is executable</returns>
         public bool CanExecute(object parameter)
         {
             return _canExecute == null ? true : _canExecute(parameter);
         }
 
         /// <summary>
-        /// Tevékenység végrehajtása.
+        /// Execution of an activity
         /// </summary>
-        /// <param name="parameter">A tevékenység paramétere.</param>
+        /// <param name="parameter">Parameter of activity</param>
         public void Execute(object parameter)
         {
             if (!CanExecute(parameter))
@@ -59,7 +59,7 @@ namespace GtLibHelper.ViewModel
         }
 
         /// <summary>
-        /// Végrehajthatóság változásának eseménykiváltása.
+        /// Event triggering a change in executability
         /// </summary>
         public void RaiseCanExecuteChanged()
         {

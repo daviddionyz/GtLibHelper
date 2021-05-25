@@ -21,13 +21,13 @@
         </Grid.RowDefinitions>
         
         <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-            Válaszon ki egy osztályt.
+            Choose one to delete.
         </Label>
         <ListBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
             ItemsSource="{Binding GtLibClassesNames,Mode=OneWay}" SelectedItem="{Binding SelectedClassName}">
         </ListBox>
         <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-            A kiválasztot osztály:
+            The choosen one:
         </Label>
         <TextBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" 
                  Height="200" IsReadOnly="True"

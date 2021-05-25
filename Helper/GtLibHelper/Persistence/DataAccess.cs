@@ -9,6 +9,14 @@ namespace GtLibHelper.Persistence
 {
     public class DataAccess
     {
+        #region Public methods
+        /// <summary>
+        /// Save the cpp code to the given path
+        /// </summary>
+        /// <param name="path">path where will be saved the cpp file</param>
+        /// <param name="model">gtLib model where are the classes</param>
+        /// <param name="header">include headers text</param>
+        /// <param name="inputTxt">input txt for cpp file</param>
         public void SaveCppCode(string path, GtLibClassModel model, string header, string inputTxt) 
         {
             try
@@ -50,11 +58,21 @@ namespace GtLibHelper.Persistence
             }
             catch(Exception)
             {
-                throw new DataAccessException("main.cpp mentése sikertelen.");
+                throw new DataAccessException("The main.cpp file save failed.");
             }
         }
+        /// <summary>
+        /// Save the project for the given path
+        /// </summary>
+        /// <param name="path">path where will be saved the cpp file</param>
+        /// <param name="model">gtLib model where are the classes</param>
+        /// <param name="header">include headers text</param>
+        /// <param name="inputTxt">input txt for cpp file</param>
         public void SaveProject(string path, GtLibClassModel model, string header, string inputTxt)
         {
+            if (path == null)
+                return;
+
             try 
             { 
                 StreamWriter writer = new StreamWriter(path);
@@ -79,9 +97,15 @@ namespace GtLibHelper.Persistence
             }
             catch(DataAccessException)
             {
-                throw new DataAccessException("project mentése sikertelen.");
+                throw new DataAccessException("Project save failed.");
             }
         }
+        /// <summary>
+        /// Load a project from the given path
+        /// </summary>
+        /// <param name="path">path where the project is</param>
+        /// <param name="model">gtLib model where will be added the classes</param>
+        /// <returns>Giving back a pair one of them headers other one is input txt content</returns>
         public (string,string) LoadProject(string path, GtLibClassModel model)
         {
             try { 
@@ -105,10 +129,16 @@ namespace GtLibHelper.Persistence
             }
             catch (Exception)
             {
-                throw new DataAccessException("project betöltés sikertelen.");
+                throw new DataAccessException("Project load failed.");
             }
         }
-
+        #endregion
+        #region Private methods
+        /// <summary>
+        /// It's helper method for saving project, save one class at time with it content
+        /// </summary>
+        /// <param name="writer">Stremwriter</param>
+        /// <param name="gtLibClass">gtLib class what will be saved</param>
         private void SaveGtLibClasses(StreamWriter writer,AbstractLibClass gtLibClass) 
         {
             string delimeter = "#&&#&&delimeter&&#&&#";
@@ -209,6 +239,11 @@ namespace GtLibHelper.Persistence
                     break;
             }
         }
+        /// <summary>
+        /// It's helper method for loading project, it's load one class at time
+        /// </summary>
+        /// <param name="text">the raw string what were read from the path</param>
+        /// <param name="model">gtLib model where the class will be putted</param>
         private void LoadGtLibClasses(string text, GtLibClassModel model) 
         {
             string delimeterClassPartSeparator = "#&&#&&delimeter&&#&&#";
@@ -256,6 +291,10 @@ namespace GtLibHelper.Persistence
             }
 
         }
+        /// <summary>
+        /// Write out gtLib classes headers form properties
+        /// </summary>
+        /// <param name="path">path where will be saved</param>
         private void SaveGtLibClassHpp(string path) 
         {
             path += "\\gtlib";
@@ -274,5 +313,6 @@ namespace GtLibHelper.Persistence
             File.WriteAllText(path + "\\seqinfileenumerator.hpp"   , Properties.Resources.seqinfileenumerator);
             File.WriteAllText(path + "\\stringstreamenumerator.hpp", Properties.Resources.stringstreamenumerator);
         }
+        #endregion
     }
 }

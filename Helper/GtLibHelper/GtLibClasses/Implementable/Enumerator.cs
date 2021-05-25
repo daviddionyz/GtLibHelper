@@ -11,7 +11,7 @@ namespace GtLibHelper.GtLibClasses.Implementable
             this.Name = name;
             this.Type = "Enumerator";
             this.NeededHeader = "#include \"gtlib\\enumerator.hpp\"";
-            this.Text = "class _name_" + ": public Enumerator<T>" +
+            this.Text = "class _name_" + ": public Enumerator<Item>" +
                 "{ \r\n" +
                 "private: \r\n" +
                 "\r\n" +
@@ -19,7 +19,7 @@ namespace GtLibHelper.GtLibClasses.Implementable
                 "\tvoid first()         {} \r\n" +
                 "\tvoid next()          {} \r\n" +
                 "\tbool end() const     {} \r\n" +
-                "\tT current() const {} \r\n" +
+                "\tItem current() const {} \r\n" +
                 "};\r\n";
         }
 

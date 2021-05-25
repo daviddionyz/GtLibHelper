@@ -11,14 +11,14 @@ namespace GtLibHelper.GtLibClasses.Implementable
             this.Name = name;
             this.Type = "Summation";
             this.NeededHeader = "#include \"gtlib\\summation.hpp\"";
-            this.Text = "class _name_" + " : public Summation<A,T>\r\n" +
+            this.Text = "class _name_" + " : public Summation<Item,T>\r\n" +
                 "{ \r\n" +
                 "private: \r\n" +
                 "\r\n" +
                 "public: \r\n" +
-                "\tT func(const A& e) const override {}\r\n" +
+                "\tT func(const Item& e) const override {}\r\n" +
                 "\tT netural() const override {}\r\n" +
-                "\tT add( const A& a, const A& b) const override {}\r\n" +
+                "\tT add( const Item& a, const Item& b) const override {}\r\n" +
                 "} \r\n";
         }
 

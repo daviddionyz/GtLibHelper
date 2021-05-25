@@ -19,16 +19,13 @@ namespace GtLibHelper.GtLibClasses.Implementable
                 "\tValue func(const Item& e) const override { };\r\n" +
                 "\tbool  cond(const Item& e) const override { return true;}\r\n" +
                 "public: \r\n" +
-                "\tbool found()   const { return _l;}\r\n" +
-                "\tValue opt()    const { return _opt;}\r\n" +
-                "\tItem optElem() const { return _optelem;}\r\n" +
                 "}\r\n";
         }
 
 
         public override void RefreshText()
         {
-            this.Text = $"class {Name} " + $": public MaxSearch<{Item}, {T}, {Compare}>\r\n" +
+            this.Text = $"class {Name} " + $": public MaxSearch<{Item}, {T}, {Compare}<{T}>>\r\n" +
                 "{ \r\n" +
                 "private: \r\n" +
                 "   \r\n" +
@@ -36,9 +33,6 @@ namespace GtLibHelper.GtLibClasses.Implementable
                 $"\t{T} func(const {Item}& e) " + " const override { };\r\n" +
                 $"\tbool  cond(const {Item}& e) " + " const override { return true;}\r\n" +
                 "public: \r\n" +
-                "\tbool found()   const { return _l;}\r\n" +
-                $"\t{T} opt()   " + " const { return _opt;}\r\n" +
-                $"\t{Item} optElem() " + "  const { return _optelem;}\r\n" +
                 "}\r\n";
         }
     }

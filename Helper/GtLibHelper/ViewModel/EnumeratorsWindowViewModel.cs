@@ -9,9 +9,20 @@ namespace GtLibHelper.ViewModel
 {
     public class EnumeratorsWindowViewModel : ViewModelBase
     {
+        #region Fields
         private GtLibClassModel _gtLibClassModel;
         private String _selectedEnumeratorType;
+        private List<String> _gtLibClassNames;
+        private String _selectedClassName;
+        private String _selectedClassText;
+        #endregion
 
+        #region Constructors
+        /// <summary>
+        /// Create EnumeratorsWindowViewModel class
+        /// </summary>
+        /// <param name="gtLibClassModel">It's type is GtLibClassModel what holds gtlib classes</param>
+        /// <param name="selectedEnumeratorType">It's type is string and hold the enumerator class type</param>
         public EnumeratorsWindowViewModel(GtLibClassModel gtLibClassModel, String selectedEnumeratorType)
         {
             _gtLibClassModel = gtLibClassModel;
@@ -20,8 +31,16 @@ namespace GtLibHelper.ViewModel
 
             OkButtonClickedCommand = new DelegateCommand(param => OnOkButtonClicked());
         }
+        #endregion
 
-        private List<String> _gtLibClassNames;
+        #region DelegateCommands
+        public DelegateCommand OkButtonClickedCommand { get; private set; }
+        #endregion
+
+        #region Properties
+        /// <summary>
+        /// It's holding gtlib classes name
+        /// </summary>
         public List<String> GtLibClassesNames
         {
             get
@@ -34,17 +53,9 @@ namespace GtLibHelper.ViewModel
                 OnPropertyChanged("GtLibClassesNames");
             }
         }
-        private void SetClassNames()
-        {
-            _gtLibClassNames = new List<string>();
-
-            foreach (AbstractLibClass member in _gtLibClassModel.ListOfLibClasses)
-            {
-                _gtLibClassNames.Add(member.Name);
-            }
-        }
-
-        private String _selectedClassName;
+        /// <summary>
+        /// If class is selected on view this property has it's name
+        /// </summary>
         public String SelectedClassName
         {
             get
@@ -57,7 +68,37 @@ namespace GtLibHelper.ViewModel
                 ClassSelected();
             }
         }
+        /// <summary>
+        /// If class is selected on view this property has it's text
+        /// </summary>
+        public String SelectedClassText
+        {
+            get
+            {
+                return _selectedClassText;
+            }
+            set
+            {
+                _selectedClassText = value;
+                OnPropertyChanged("SelectedClassText");
+            }
+        }
+        #endregion
 
+        #region Methods
+        /// <summary>
+        /// It's sets GtLibClassNames property, the names are get from model
+        /// </summary>
+        private void SetClassNames()
+        {
+            _gtLibClassNames = new List<string>();
+
+            foreach (AbstractLibClass member in _gtLibClassModel.ListOfLibClasses)
+                _gtLibClassNames.Add(member.Name);
+        }
+        /// <summary>
+        /// Putting class instantiation to selected class, but it's not saved to the class it's just showed for view
+        /// </summary>
         private void ClassSelected()
         {
             SelectedClassText = (_gtLibClassModel.ListOfLibClasses.Find(m => m.Name.Equals(SelectedClassName))).Text;
@@ -98,42 +139,29 @@ namespace GtLibHelper.ViewModel
             }
 
         }
-
-        private String _selectedClassText;
-        public String SelectedClassText
-        {
-            get
-            {
-                return _selectedClassText;
-            }
-            set
-            {
-                _selectedClassText = value;
-                OnPropertyChanged("SelectedClassText");
-            }
-        }
-
-        public DelegateCommand OkButtonClickedCommand { get; private set; }
-
+        /// <summary>
+        /// It's rewrite selected class text with SelectedClassText property and raise ok button event
+        /// </summary>
         private void OnOkButtonClicked()
         {
             (_gtLibClassModel.ListOfLibClasses.Find(m => m.Name.Equals(SelectedClassName))).Text = SelectedClassText;
             RaiseEnumeratorCalssCreated();
             RaiseOkButtonClicked();
         }
+        #endregion
 
+        #region Events
         public event EventHandler OkButtonClicked;
-
         private void RaiseOkButtonClicked()
         {
             OkButtonClicked?.Invoke(this, new EventArgs());
         }
 
         public event EventHandler<EnumeratorCreatedEventArgs> EnumeratorCalssCreated;
-
         private void RaiseEnumeratorCalssCreated() 
         {
             EnumeratorCalssCreated?.Invoke(this, new EnumeratorCreatedEventArgs(_selectedEnumeratorType));
         }
+        #endregion
     }
 }

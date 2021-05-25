@@ -8,12 +8,12 @@
         Title="EnumeratorsWindow" Width="400">
     <StackPanel Height="Auto">
         <Label>
-            Válaszon ki egy osztályt.
+            Choose one of the classes or main function.
         </Label>
         <ListBox ItemsSource="{Binding GtLibClassesNames}" SelectedItem="{Binding SelectedClassName}">
         </ListBox>
         <Label>
-            A kiválasztot osztály:
+            The choosen one:
         </Label>
         <TextBox AcceptsReturn="True" AcceptsTab="True" IsReadOnly="false" 
                  Height="200"

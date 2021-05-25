@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GtLibHelper.View"
         mc:Ignorable="d"
-        Title="ThreeParamClassesWindow" MinHeight="500" MinWidth="250" MaxHeight="500" MaxWidth="300">
+        Title="Class" MinHeight="500" MinWidth="250" MaxHeight="500" MaxWidth="300">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -44,7 +44,7 @@
                    Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"
                    Height="20" Width="250"></TextBox>
 
-        <Label Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">Please give the type of the T</Label>
+        <Label Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">Please choose search mode</Label>
         <ListBox Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" SelectedItem="{Binding LessOrGreat}" VerticalAlignment="Center"> 
             <ListBoxItem Content="Less" ></ListBoxItem>
             <ListBoxItem Content="Great"></ListBoxItem>

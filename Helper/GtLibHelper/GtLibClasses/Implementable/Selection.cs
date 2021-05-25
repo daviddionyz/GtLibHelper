@@ -11,15 +11,14 @@ namespace GtLibHelper.GtLibClasses.Implementable
             this.Name = name;
             this.Type = "Selection";
             this.NeededHeader = "#include \"gtlib\\selection.hpp\"";
-            this.Text = "class _name_" + ": public Selection<T>" +
+            this.Text = "class _name_" + ": public Selection<Item>" +
                 "{ \r\n" +
                 "private: \r\n" +
                 "\r\n" +
                 "protected: \r\n" +
-                "\tvoid init() override final {}\r\n" +
-                "\tvoid body(const T& e) override final {}\r\n" +
                 "\t\r\n" +
                 "public: \r\n" +
+                "bool cond(const Item& e) const override { return true;} \r\n" +
                 "\t\r\n" +
                 "};\r\n";
         }
@@ -31,10 +30,9 @@ namespace GtLibHelper.GtLibClasses.Implementable
                 "private: \r\n" +
                 "\r\n" +
                 "protected: \r\n" +
-                "\tvoid init() override final {}\r\n" +
-                $"\tvoid body(const {Item}& e)" + " override final {}\r\n" +
                 "\t\r\n" +
                 "public: \r\n" +
+                $"bool cond(const {Item}& e) const override" + " { return true;} \r\n" +
                 "\t\r\n" +
                 "};\r\n";
         }

@@ -8,19 +8,19 @@ namespace GtLibHelper.ViewModel
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
         /// <summary>
-        /// Nézetmodell ősosztály példányosítása.
+        /// View model base initial
         /// </summary>
         protected ViewModelBase() { }
 
         /// <summary>
-        /// Tulajdonság változásának eseménye.
+        /// Property change event
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
-        /// Tulajdonság változása ellenőrzéssel.
+        /// Property change with check
         /// </summary>
-        /// <param name="propertyName">Tulajdonság neve.</param>
+        /// <param name="propertyName">Property name</param>
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             if (PropertyChanged != null)

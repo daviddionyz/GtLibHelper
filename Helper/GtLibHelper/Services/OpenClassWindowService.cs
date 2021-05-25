@@ -10,17 +10,26 @@ namespace GtLibHelper.Services
 {
     public class OpenClassWindowService
     {
+        #region Fields
         private OneParamClassesWindow _oneParamClassesWindow;
         private TwoParamClassesWindow _twoParamClassesWindow;
         private ThreeParamClassesWindow _threeParamClassesWindow;
         private OwnStructWindow _ownStructWindow;
         private EnumeratorsWindow _enumeratorsWindow;
+        #endregion
 
+        #region Constructors
         public OpenClassWindowService()
         {
             
         }
+        #endregion
 
+        #region Window openers methods
+        /// <summary>
+        /// Open OneParamwindow and give the model to it
+        /// </summary>
+        /// <param name="model">gtLib class model</param>
         public void OpenOneParamWindow(GtLibClassModel model)
         {
 
@@ -36,6 +45,10 @@ namespace GtLibHelper.Services
                 _oneParamClassesWindow.ShowDialog();
             }
         }
+        /// <summary>
+        /// Open TwoParamWindow and give the model to it
+        /// </summary>
+        /// <param name="model">gtLib class model</param>
         public void OpenTwoParamWindow(GtLibClassModel model)
         {
             if (model.CurrentLibClass != null)
@@ -50,6 +63,10 @@ namespace GtLibHelper.Services
                 _twoParamClassesWindow.ShowDialog();
             }
         }
+        /// <summary>
+        /// Open ThreeParamWindow and give the model to it
+        /// </summary>
+        /// <param name="model">gtLib class model</param>
         public void OpenThreeParamWindow(GtLibClassModel model)
         {
             _threeParamClassesWindow = new ThreeParamClassesWindow();
@@ -61,6 +78,10 @@ namespace GtLibHelper.Services
 
             _threeParamClassesWindow.ShowDialog();
         }
+        /// <summary>
+        /// Open OwnStructWindow and give the model to it
+        /// </summary>
+        /// <param name="model">gtLib class model</param>
         public void OpenOwnStructWindow(GtLibClassModel model)
         {
             _ownStructWindow = new OwnStructWindow();
@@ -72,10 +93,15 @@ namespace GtLibHelper.Services
 
             _ownStructWindow.ShowDialog();
         }
+        /// <summary>
+        /// Open EnumeratorsWindow and give the model to it and selected enumerator type
+        /// </summary>
+        /// <param name="model">gtLib class model</param>
+        /// <param name="selectedEnumeratorType">selected enumerator type</param>
         public void OpenEnumeratorsWindow(GtLibClassModel model, String selectedEnumeratorType) 
         {
             _enumeratorsWindow = new EnumeratorsWindow();
-            EnumeratorsWindowViewModel enumeratorsWindowViewModel = new EnumeratorsWindowViewModel(model, selectedEnumeratorType);
+            EnumeratorsWindowViewModel enumeratorsWindowViewModel = new EnumeratorsWindowViewModel(model,selectedEnumeratorType);
 
             _enumeratorsWindow.DataContext = enumeratorsWindowViewModel;
 
@@ -84,6 +110,10 @@ namespace GtLibHelper.Services
 
             _enumeratorsWindow.ShowDialog();
         }
+        /// <summary>
+        /// Open DeleteClassWindow and give the model to it
+        /// </summary>
+        /// <param name="model">gtLib class model</param>
         public void OpenDeleteClassWindow(GtLibClassModel model) 
         {
             DeleteClassWindow deleteClassWindow = new DeleteClassWindow();
@@ -93,7 +123,17 @@ namespace GtLibHelper.Services
 
             deleteClassWindow.ShowDialog();
         }
+        #endregion
 
+        #region Events and Event handlers
+        public event EventHandler ClassGenerated;
+        public event EventHandler<EnumeratorCreatedEventArgs> EnumeratorClassCreated;
+
+        /// <summary>
+        /// If on the opened window ok button was clicked then this handels it and close the window
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Event args</param>
         private void OkButtonClicked_Handler(object sender, EventArgs e)
         {
             if (_oneParamClassesWindow != null)
@@ -124,17 +164,22 @@ namespace GtLibHelper.Services
 
             Raise_ClassGeneratedEvent();
         }
-        public event EventHandler ClassGenerated;
+        /// <summary>
+        /// Invokde Class generated event
+        /// </summary>
         private void Raise_ClassGeneratedEvent() 
         {
             ClassGenerated?.Invoke(this, new EventArgs());
         }
-
-        public event EventHandler<EnumeratorCreatedEventArgs> EnumeratorClassCreated;
+        /// <summary>
+        /// Handel if enumerator class created on window and invoke enumerator class generated event
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Event args</param>
         private void EnumeratorClassCreated_Handler(object sender, EnumeratorCreatedEventArgs e) 
         {
             EnumeratorClassCreated?.Invoke(sender, e);
         }
-
+        #endregion
     }
 }
