@@ -2,11 +2,6 @@
 using GtLibHelper.Services;
 using GtLibHelper.ViewModel;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace GtLibHelper
@@ -21,12 +16,13 @@ namespace GtLibHelper
         private GtLibClassModel _gtLibClassModel;
         private DataAccess _dataAccess;
 
-        public App(){
+        public App()
+        {
             _gtLibClassModel = new GtLibClassModel();
             _dataAccess = new DataAccess();
 
             //view model part
-            _viewModel = new MainWindowViewModel(_gtLibClassModel,_dataAccess);
+            _viewModel = new MainWindowViewModel(_gtLibClassModel, _dataAccess);
 
             //main window part
             _mainWindow = new MainWindow();
@@ -34,12 +30,12 @@ namespace GtLibHelper
 
             //events handeling part
             _viewModel.Exit += exit_Handler;
-            
+
             _mainWindow.Show();
         }
 
 
-        private void exit_Handler(Object sender, EventArgs e) 
+        private void exit_Handler(Object sender, EventArgs e)
         {
             _mainWindow.Close();
         }

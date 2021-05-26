@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GtLibHelper.GtLibClasses.Implementable
 {
-    public class Selection : OneParamClass 
+    public class Selection : OneParamClass
     {
         public Selection(String name)
         {

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GtLibHelper.GtLibClasses.Implementable
+﻿namespace GtLibHelper.GtLibClasses.Implementable
 {
     public class Enumerator : OneParamClass
-    {   
+    {
         public Enumerator(string name)
         {
             this.Name = name;
@@ -37,5 +33,5 @@ namespace GtLibHelper.GtLibClasses.Implementable
             "};\r\n";
         }
     }
-    
+
 }

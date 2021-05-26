@@ -1,7 +1,5 @@
 ﻿using GtLibHelper.Services;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GtLibHelper.ViewModel
 {
@@ -58,10 +56,10 @@ namespace GtLibHelper.ViewModel
         /// <summary>
         /// Max search can be Less or Great
         /// </summary>
-        public String LessOrGreat 
+        public String LessOrGreat
         {
             get { return _lessOrGreat; }
-            set 
+            set
             {
                 _lessOrGreat = value.Split(" ")[1];
                 RefreshClassText();

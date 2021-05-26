@@ -1,7 +1,5 @@
 ﻿using GtLibHelper.Services;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GtLibHelper.ViewModel
 {
@@ -47,10 +45,10 @@ namespace GtLibHelper.ViewModel
         /// <summary>
         /// Current class T value
         /// </summary>
-        public String T 
+        public String T
         {
             get { return _t; }
-            set 
+            set
             {
                 _t = value;
                 RefreshClassText();
@@ -83,10 +81,10 @@ namespace GtLibHelper.ViewModel
         /// <summary>
         /// It's for label text
         /// </summary>
-        public String LabelForT 
+        public String LabelForT
         {
             get { return _labeForT; }
-            private set 
+            private set
             {
                 _labeForT = value;
                 OnPropertyChanged("LabeForT");

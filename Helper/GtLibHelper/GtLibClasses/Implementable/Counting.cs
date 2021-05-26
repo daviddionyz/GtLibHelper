@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GtLibHelper.GtLibClasses.Implementable
+﻿namespace GtLibHelper.GtLibClasses.Implementable
 {
     public class Counting : OneParamClass
     {
@@ -23,7 +19,7 @@ namespace GtLibHelper.GtLibClasses.Implementable
 
         }
 
-        public override void RefreshText() 
+        public override void RefreshText()
         {
             this.Text = $"class {Name} " + $": public Counting<{Item}>" +
                 "{ \r\n" +

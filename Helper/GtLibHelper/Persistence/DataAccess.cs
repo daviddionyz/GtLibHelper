@@ -17,7 +17,7 @@ namespace GtLibHelper.Persistence
         /// <param name="model">gtLib model where are the classes</param>
         /// <param name="header">include headers text</param>
         /// <param name="inputTxt">input txt for cpp file</param>
-        public void SaveCppCode(string path, GtLibClassModel model, string header, string inputTxt) 
+        public void SaveCppCode(string path, GtLibClassModel model, string header, string inputTxt)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace GtLibHelper.Persistence
                 writer.Close();
                 writer.Dispose();
             }
-            catch(Exception)
+            catch (Exception)
             {
                 throw new DataAccessException("The main.cpp file save failed.");
             }
@@ -73,18 +73,18 @@ namespace GtLibHelper.Persistence
             if (path == null)
                 return;
 
-            try 
-            { 
+            try
+            {
                 StreamWriter writer = new StreamWriter(path);
 
-                string delimeter               = "&##&##delimeter##&##&";
+                string delimeter = "&##&##delimeter##&##&";
                 string delimeterClassSeparator = "@@@&&&{{{class}}}&&&@@@";
                 writer.WriteLine(header);
                 writer.WriteLine(delimeter);
                 writer.WriteLine(inputTxt);
                 writer.WriteLine(delimeter);
                 writer.Flush();
-                foreach (AbstractLibClass member in model.ListOfLibClasses) 
+                foreach (AbstractLibClass member in model.ListOfLibClasses)
                 {
                     SaveGtLibClasses(writer, member);
                     writer.WriteLine(delimeterClassSeparator);
@@ -95,7 +95,7 @@ namespace GtLibHelper.Persistence
                 writer.Dispose();
 
             }
-            catch(DataAccessException)
+            catch (DataAccessException)
             {
                 throw new DataAccessException("Project save failed.");
             }
@@ -106,26 +106,27 @@ namespace GtLibHelper.Persistence
         /// <param name="path">path where the project is</param>
         /// <param name="model">gtLib model where will be added the classes</param>
         /// <returns>Giving back a pair one of them headers other one is input txt content</returns>
-        public (string,string) LoadProject(string path, GtLibClassModel model)
+        public (string, string) LoadProject(string path, GtLibClassModel model)
         {
-            try { 
+            try
+            {
                 StreamReader reader = new StreamReader(path);
 
-                string delimeterMain               = "&##&##delimeter##&##&";
-                string delimeterClassSeparator     = "@@@&&&{{{class}}}&&&@@@";
+                string delimeterMain = "&##&##delimeter##&##&";
+                string delimeterClassSeparator = "@@@&&&{{{class}}}&&&@@@";
 
-                string header   = "";
+                string header = "";
                 string inputTxt = "";
 
                 string[] input = reader.ReadToEnd().Split(delimeterMain);
-                header   = input[0];
+                header = input[0];
                 inputTxt = input[1];
-                foreach (string member in input[2].Split(delimeterClassSeparator)) 
+                foreach (string member in input[2].Split(delimeterClassSeparator))
                 {
                     LoadGtLibClasses(member, model);
                 }
 
-                return (header,inputTxt);
+                return (header, inputTxt);
             }
             catch (Exception)
             {
@@ -139,7 +140,7 @@ namespace GtLibHelper.Persistence
         /// </summary>
         /// <param name="writer">Stremwriter</param>
         /// <param name="gtLibClass">gtLib class what will be saved</param>
-        private void SaveGtLibClasses(StreamWriter writer,AbstractLibClass gtLibClass) 
+        private void SaveGtLibClasses(StreamWriter writer, AbstractLibClass gtLibClass)
         {
             string delimeter = "#&&#&&delimeter&&#&&#";
 
@@ -244,15 +245,15 @@ namespace GtLibHelper.Persistence
         /// </summary>
         /// <param name="text">the raw string what were read from the path</param>
         /// <param name="model">gtLib model where the class will be putted</param>
-        private void LoadGtLibClasses(string text, GtLibClassModel model) 
+        private void LoadGtLibClasses(string text, GtLibClassModel model)
         {
             string delimeterClassPartSeparator = "#&&#&&delimeter&&#&&#";
 
             string[] input = text.Split(delimeterClassPartSeparator);
 
-            string type = input[0].Replace("\r\n","");
+            string type = input[0].Replace("\r\n", "");
 
-            model.CreateNewLibClass("",type);
+            model.CreateNewLibClass("", type);
 
             switch (type)
             {
@@ -295,22 +296,22 @@ namespace GtLibHelper.Persistence
         /// Write out gtLib classes headers form properties
         /// </summary>
         /// <param name="path">path where will be saved</param>
-        private void SaveGtLibClassHpp(string path) 
+        private void SaveGtLibClassHpp(string path)
         {
             path += "\\gtlib";
 
             Directory.CreateDirectory(path);
 
-            File.WriteAllText(path + "\\counting.hpp"              , Properties.Resources.counting);
-            File.WriteAllText(path + "\\arrayenumerator.hpp"       , Properties.Resources.arrayenumerator);
-            File.WriteAllText(path + "\\enumerator.hpp"            , Properties.Resources.enumerator);
-            File.WriteAllText(path + "\\intervalenumerator.hpp"    , Properties.Resources.intervalenumerator);
-            File.WriteAllText(path + "\\linsearch.hpp"             , Properties.Resources.linsearch);
-            File.WriteAllText(path + "\\maxsearch.hpp"             , Properties.Resources.maxsearch);
-            File.WriteAllText(path + "\\procedure.hpp"             , Properties.Resources.procedure);
-            File.WriteAllText(path + "\\selection.hpp"             , Properties.Resources.selection);
-            File.WriteAllText(path + "\\summation.hpp"             , Properties.Resources.summation);
-            File.WriteAllText(path + "\\seqinfileenumerator.hpp"   , Properties.Resources.seqinfileenumerator);
+            File.WriteAllText(path + "\\counting.hpp", Properties.Resources.counting);
+            File.WriteAllText(path + "\\arrayenumerator.hpp", Properties.Resources.arrayenumerator);
+            File.WriteAllText(path + "\\enumerator.hpp", Properties.Resources.enumerator);
+            File.WriteAllText(path + "\\intervalenumerator.hpp", Properties.Resources.intervalenumerator);
+            File.WriteAllText(path + "\\linsearch.hpp", Properties.Resources.linsearch);
+            File.WriteAllText(path + "\\maxsearch.hpp", Properties.Resources.maxsearch);
+            File.WriteAllText(path + "\\procedure.hpp", Properties.Resources.procedure);
+            File.WriteAllText(path + "\\selection.hpp", Properties.Resources.selection);
+            File.WriteAllText(path + "\\summation.hpp", Properties.Resources.summation);
+            File.WriteAllText(path + "\\seqinfileenumerator.hpp", Properties.Resources.seqinfileenumerator);
             File.WriteAllText(path + "\\stringstreamenumerator.hpp", Properties.Resources.stringstreamenumerator);
         }
         #endregion

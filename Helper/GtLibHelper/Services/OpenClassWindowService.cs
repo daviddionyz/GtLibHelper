@@ -1,10 +1,7 @@
-﻿using GtLibHelper.GtLibClasses;
-using GtLibHelper.OwnEventArgs;
+﻿using GtLibHelper.OwnEventArgs;
 using GtLibHelper.View;
 using GtLibHelper.ViewModel;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GtLibHelper.Services
 {
@@ -21,7 +18,7 @@ namespace GtLibHelper.Services
         #region Constructors
         public OpenClassWindowService()
         {
-            
+
         }
         #endregion
 
@@ -98,10 +95,10 @@ namespace GtLibHelper.Services
         /// </summary>
         /// <param name="model">gtLib class model</param>
         /// <param name="selectedEnumeratorType">selected enumerator type</param>
-        public void OpenEnumeratorsWindow(GtLibClassModel model, String selectedEnumeratorType) 
+        public void OpenEnumeratorsWindow(GtLibClassModel model, String selectedEnumeratorType)
         {
             _enumeratorsWindow = new EnumeratorsWindow();
-            EnumeratorsWindowViewModel enumeratorsWindowViewModel = new EnumeratorsWindowViewModel(model,selectedEnumeratorType);
+            EnumeratorsWindowViewModel enumeratorsWindowViewModel = new EnumeratorsWindowViewModel(model, selectedEnumeratorType);
 
             _enumeratorsWindow.DataContext = enumeratorsWindowViewModel;
 
@@ -114,7 +111,7 @@ namespace GtLibHelper.Services
         /// Open DeleteClassWindow and give the model to it
         /// </summary>
         /// <param name="model">gtLib class model</param>
-        public void OpenDeleteClassWindow(GtLibClassModel model) 
+        public void OpenDeleteClassWindow(GtLibClassModel model)
         {
             DeleteClassWindow deleteClassWindow = new DeleteClassWindow();
             DeleteClassViewModel deleteClassViewModel = new DeleteClassViewModel(model);
@@ -156,7 +153,8 @@ namespace GtLibHelper.Services
             {
                 _ownStructWindow.Close();
                 _ownStructWindow = null;
-            } else if (_enumeratorsWindow.IsActive) 
+            }
+            else if (_enumeratorsWindow.IsActive)
             {
                 _enumeratorsWindow.Close();
                 _enumeratorsWindow = null;
@@ -167,7 +165,7 @@ namespace GtLibHelper.Services
         /// <summary>
         /// Invokde Class generated event
         /// </summary>
-        private void Raise_ClassGeneratedEvent() 
+        private void Raise_ClassGeneratedEvent()
         {
             ClassGenerated?.Invoke(this, new EventArgs());
         }
@@ -176,7 +174,7 @@ namespace GtLibHelper.Services
         /// </summary>
         /// <param name="sender">Event sender</param>
         /// <param name="e">Event args</param>
-        private void EnumeratorClassCreated_Handler(object sender, EnumeratorCreatedEventArgs e) 
+        private void EnumeratorClassCreated_Handler(object sender, EnumeratorCreatedEventArgs e)
         {
             EnumeratorClassCreated?.Invoke(sender, e);
         }

@@ -1,9 +1,7 @@
 ﻿using GtLibHelper.GtLibClasses;
 using GtLibHelper.GtLibClasses.Implementable;
-using GtLibHelper.GtLibClasses.NotImplementable;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace GtLibHelper.Services
@@ -19,26 +17,30 @@ namespace GtLibHelper.Services
         /// <summary>
         /// List of created gtlib classes
         /// </summary>
-        public List<AbstractLibClass> ListOfLibClasses {
-            get{
+        public List<AbstractLibClass> ListOfLibClasses
+        {
+            get
+            {
                 return _libClasses;
             }
-            private set{
+            private set
+            {
                 _libClasses = value;
             }
         }
         /// <summary>
         /// The currently generated gtlib class what will be added to gtlib list
         /// </summary>
-        public AbstractLibClass CurrentLibClass { 
+        public AbstractLibClass CurrentLibClass
+        {
             get
-            { 
+            {
                 return _currentLibClass;
-            } 
+            }
             private set
             {
                 _currentLibClass = value;
-            } 
+            }
         }
         #endregion
 
@@ -46,7 +48,7 @@ namespace GtLibHelper.Services
         /// <summary>
         /// Basic constructor what will initial gtlib class list
         /// </summary>
-        public GtLibClassModel() 
+        public GtLibClassModel()
         {
             ListOfLibClasses = new List<AbstractLibClass>();
         }
@@ -54,7 +56,7 @@ namespace GtLibHelper.Services
         /// Copy constructor
         /// </summary>
         /// <param name="model">that gtlibmodel what will be copied</param>
-        public GtLibClassModel(GtLibClassModel model) 
+        public GtLibClassModel(GtLibClassModel model)
         {
             ListOfLibClasses = new List<AbstractLibClass>();
 
@@ -131,7 +133,7 @@ namespace GtLibHelper.Services
         /// <param name="T">t type in string</param>
         /// <param name="compare">it's only used by maxsearch only can has to status Great or Less</param>
         /// <param name="text">class text</param>
-        public void RefreshLibClassData(String name,String item, String T, String compare, String text)
+        public void RefreshLibClassData(String name, String item, String T, String compare, String text)
         {
             switch (CurrentLibClass.Type)
             {
@@ -178,7 +180,7 @@ namespace GtLibHelper.Services
 
                     linSearch.Name = name;
                     linSearch.Item = item;
-                    linSearch.T    = T;
+                    linSearch.T = T;
                     linSearch.Text = text;
 
                     break;
@@ -201,14 +203,14 @@ namespace GtLibHelper.Services
                     maxSearch.Text = text;
 
                     break;
-                }
             }
+        }
         /// <summary>
         /// Add current lib class to the list
         /// </summary>
-        public void AddCurrentLibClass() 
+        public void AddCurrentLibClass()
         {
-            if (CurrentLibClass != null) 
+            if (CurrentLibClass != null)
             {
                 ListOfLibClasses.Add(CurrentLibClass);
                 CurrentLibClass = null;
@@ -237,7 +239,7 @@ namespace GtLibHelper.Services
         /// <summary>
         /// Reset the list of gtlib class and currunt gtlib property
         /// </summary>
-        public void Clear() 
+        public void Clear()
         {
             ListOfLibClasses = new List<AbstractLibClass>();
             CurrentLibClass = null;
@@ -255,7 +257,7 @@ namespace GtLibHelper.Services
         /// </summary>
         /// <param name="source">source class name</param>
         /// <param name="destination">destination class name</param>
-        public void DragAndDropClassInstantiation(string source, string destination) 
+        public void DragAndDropClassInstantiation(string source, string destination)
         {
             if (source.Equals(destination) || source.Equals("main"))
                 return;
@@ -264,7 +266,7 @@ namespace GtLibHelper.Services
             {
                 InsertClassInstantiation(source, destination, "struct");
             }
-            else 
+            else
             {
                 InsertClassInstantiation(source, destination, "");
             }
@@ -277,7 +279,7 @@ namespace GtLibHelper.Services
         /// </summary>
         /// <param name="name">class name</param>
         /// <returns>return gtlib class type if it's in list</returns>
-        private string GetTypeByName(string name) 
+        private string GetTypeByName(string name)
         {
             return ListOfLibClasses.Find(member => member.Name.Equals(name)).Type;
         }
@@ -287,7 +289,7 @@ namespace GtLibHelper.Services
         /// <param name="sourceClassName">source class name</param>
         /// <param name="name">destination class name</param>
         /// <param name="prefix">it will be putted befor instantiation</param>
-        private void InsertClassInstantiation(string sourceClassName,string name, string prefix) 
+        private void InsertClassInstantiation(string sourceClassName, string name, string prefix)
         {
             AbstractLibClass selectedClass = (ListOfLibClasses.Find(m => m.Name.Equals(name)));
 
@@ -326,7 +328,7 @@ namespace GtLibHelper.Services
                     + str[1];
             }
 
-            
+
         }
         #endregion
     }

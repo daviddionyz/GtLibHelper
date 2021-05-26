@@ -1,9 +1,5 @@
-﻿using GtLibHelper.GtLibClasses;
-using GtLibHelper.OwnEventArgs;
-using GtLibHelper.Services;
+﻿using GtLibHelper.Services;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GtLibHelper.ViewModel
 {
@@ -34,9 +30,11 @@ namespace GtLibHelper.ViewModel
         /// <summary>
         /// Current class item value
         /// </summary>
-        public String Item { 
-            get { return _item; } 
-            set { 
+        public String Item
+        {
+            get { return _item; }
+            set
+            {
                 _item = value;
                 RefreshClassText();
             }
@@ -44,13 +42,14 @@ namespace GtLibHelper.ViewModel
         /// <summary>
         /// Current class body
         /// </summary>
-        public String ClassText {
-            get { return _classText; } 
-            set 
+        public String ClassText
+        {
+            get { return _classText; }
+            set
             {
                 _classText = value;
                 OnPropertyChanged("ClassText");
-            } 
+            }
         }
         /// <summary>
         /// Feed back text to user
@@ -70,7 +69,7 @@ namespace GtLibHelper.ViewModel
         #region Delegate commands
         public DelegateCommand OkButtonClickedCommand { get; private set; }
         #endregion
-        
+
         #region Constructros
         /// <summary>
         /// Connect deleget command with methods and initial class text 
@@ -107,9 +106,9 @@ namespace GtLibHelper.ViewModel
         /// <summary>
         /// Check if the current given class name is good and free
         /// </summary>
-        private void CheckTheClassName() 
+        private void CheckTheClassName()
         {
-            (bool , String) tupel =_gtLibClassModel.CheckTheClassName(ClassName);
+            (bool, String) tupel = _gtLibClassModel.CheckTheClassName(ClassName);
 
             FeedBackText = tupel.Item2;
             Ok = tupel.Item1;
@@ -117,7 +116,7 @@ namespace GtLibHelper.ViewModel
         /// <summary>
         /// Refresh class text(body) with the given properties
         /// </summary>
-        private void RefreshClassText() 
+        private void RefreshClassText()
         {
 
             _gtLibClassModel.RefreshLibClassData(ClassName, Item, null, null, ClassText);

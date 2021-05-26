@@ -2,7 +2,6 @@
 using GtLibHelper.Services;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace GtLibHelper.ViewModel
 {
@@ -20,7 +19,7 @@ namespace GtLibHelper.ViewModel
         /// Create DeleteClassViewModel
         /// </summary>
         /// <param name="model">It's GtLibClassModel what holds gtlib classes</param>
-        public DeleteClassViewModel(GtLibClassModel model) 
+        public DeleteClassViewModel(GtLibClassModel model)
         {
             _gtLibClassModel = model;
             SetClassNames();
@@ -91,13 +90,13 @@ namespace GtLibHelper.ViewModel
             GtLibClassesNames = new List<string>();
 
             foreach (AbstractLibClass member in _gtLibClassModel.ListOfLibClasses)
-                if(member.Name != "main")
+                if (member.Name != "main")
                     GtLibClassesNames.Add(member.Name);
         }
         /// <summary>
         /// It's sets SelectedClassText property when class is selected in view 
         /// </summary>
-        private void ClassSelected() 
+        private void ClassSelected()
         {
             SelectedClassText = (_gtLibClassModel.ListOfLibClasses.Find(m => m.Name.Equals(SelectedClassName)))?.Text;
         }

@@ -3,7 +3,6 @@ using GtLibHelper.OwnEventArgs;
 using GtLibHelper.Services;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace GtLibHelper.ViewModel
 {
@@ -158,7 +157,7 @@ namespace GtLibHelper.ViewModel
         }
 
         public event EventHandler<EnumeratorCreatedEventArgs> EnumeratorCalssCreated;
-        private void RaiseEnumeratorCalssCreated() 
+        private void RaiseEnumeratorCalssCreated()
         {
             EnumeratorCalssCreated?.Invoke(this, new EnumeratorCreatedEventArgs(_selectedEnumeratorType));
         }

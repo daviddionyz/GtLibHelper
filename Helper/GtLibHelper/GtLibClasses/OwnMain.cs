@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GtLibHelper.GtLibClasses
+﻿namespace GtLibHelper.GtLibClasses
 {
     public class OwnMain : AbstractLibClass
     {

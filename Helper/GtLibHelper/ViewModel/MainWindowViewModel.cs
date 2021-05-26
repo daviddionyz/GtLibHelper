@@ -1,12 +1,12 @@
 ﻿using GtLibHelper.GtLibClasses;
+using GtLibHelper.OwnEventArgs;
+using GtLibHelper.Persistence;
+using GtLibHelper.Services;
+using Ookii.Dialogs.Wpf;
 using System;
 using System.Collections.Generic;
-using GtLibHelper.Services;
 using System.Collections.ObjectModel;
-using GtLibHelper.Persistence;
-using Ookii.Dialogs.Wpf;
 using System.Diagnostics;
-using GtLibHelper.OwnEventArgs;
 
 namespace GtLibHelper.ViewModel
 {
@@ -105,7 +105,7 @@ namespace GtLibHelper.ViewModel
         /// </summary>
         /// <param name="model">GtLibModel class</param>
         /// <param name="dataAccess">DataAccess class</param>
-        public MainWindowViewModel(GtLibClassModel model,DataAccess dataAccess)
+        public MainWindowViewModel(GtLibClassModel model, DataAccess dataAccess)
         {
             _gtLibClassModel = model;
             _dataAccess = dataAccess;
@@ -134,7 +134,7 @@ namespace GtLibHelper.ViewModel
             SaveCommand = new DelegateCommand(param => SaveCode());
             RunCommand = new DelegateCommand(param => RunCode());
 
-            NewProjectCommand  = new DelegateCommand(param => NewProject());
+            NewProjectCommand = new DelegateCommand(param => NewProject());
             LoadProjectCommand = new DelegateCommand(param => LoadProject());
             SaveProjectCommand = new DelegateCommand(param => SaveProject());
 
@@ -157,7 +157,7 @@ namespace GtLibHelper.ViewModel
         /// <summary>
         /// On Delete button click, delete that class what were chosen by user
         /// </summary>
-        private void OnDeleteClass() 
+        private void OnDeleteClass()
         {
             _openClassWindowService.OpenDeleteClassWindow(_gtLibClassModel);
             PutingGtLibClassOnWindow();
@@ -167,7 +167,7 @@ namespace GtLibHelper.ViewModel
         /// </summary>
         /// <param name="sender">the event sender</param>
         /// <param name="e">Enumerator created event args</param>
-        private void EnumeratorClassCreated_Handler(object sender, EnumeratorCreatedEventArgs e) 
+        private void EnumeratorClassCreated_Handler(object sender, EnumeratorCreatedEventArgs e)
         {
             AddNewHeaderToHeadersStringAtClassGeneration(_gtLibClassModel.GetHeaderForClass(e.Type));
         }
@@ -274,7 +274,7 @@ namespace GtLibHelper.ViewModel
                 _dataAccess.SaveCppCode(_saveDirectoryPath, _gtLibClassModel, Headers, InputTxt);
                 System.Windows.MessageBox.Show("Save wass success.");
             }
-            catch (Exception e) 
+            catch (Exception e)
             {
                 System.Windows.MessageBox.Show(e.Message);
             }
@@ -308,10 +308,10 @@ namespace GtLibHelper.ViewModel
         /// <summary>
         /// Create new project, make Headers and InputTxt properties null and call the model Clear method
         /// </summary>
-        private void NewProject() 
+        private void NewProject()
         {
-            
-            Headers  = "";
+
+            Headers = "";
             InputTxt = "";
 
             _gtLibClassModel.Clear();
@@ -337,7 +337,7 @@ namespace GtLibHelper.ViewModel
             try
             {
                 _dataAccess.SaveProject(path, _gtLibClassModel, Headers, InputTxt);
-                System.Windows.MessageBox.Show("Save wass success."); 
+                System.Windows.MessageBox.Show("Save wass success.");
             }
             catch (DataAccessException e)
             {
@@ -359,12 +359,13 @@ namespace GtLibHelper.ViewModel
             }
             GtLibClassModel copyOfModel = new GtLibClassModel(_gtLibClassModel);
 
-            try { 
+            try
+            {
                 _gtLibClassModel.Clear();
-                
-                (string, string) headerAndInput = _dataAccess.LoadProject(path,_gtLibClassModel);
 
-                Headers  = headerAndInput.Item1;
+                (string, string) headerAndInput = _dataAccess.LoadProject(path, _gtLibClassModel);
+
+                Headers = headerAndInput.Item1;
                 InputTxt = headerAndInput.Item2;
 
                 PutingGtLibClassOnWindow();
@@ -384,9 +385,9 @@ namespace GtLibHelper.ViewModel
         /// </summary>
         /// <param name="source">source class name</param>
         /// <param name="destination">destination class name</param>
-        public void DragAndDropClassManager(string source, string destination) 
+        public void DragAndDropClassManager(string source, string destination)
         {
-            _gtLibClassModel.DragAndDropClassInstantiation(source,destination);
+            _gtLibClassModel.DragAndDropClassInstantiation(source, destination);
             PutingGtLibClassOnWindow();
         }
         /// <summary>
@@ -406,7 +407,7 @@ namespace GtLibHelper.ViewModel
         /// If the new header is not in Headers property then this method will add it.
         /// </summary>
         /// <param name="header">new header include</param>
-        private void AddNewHeaderToHeadersStringAtClassGeneration(String header) 
+        private void AddNewHeaderToHeadersStringAtClassGeneration(String header)
         {
             if (header == null)
                 return;
@@ -414,7 +415,7 @@ namespace GtLibHelper.ViewModel
             List<string> headears = new List<string>(Headers.Split("\r\n"));
             if (!headears.Contains(header))
                 Headers += header + "\r\n";
-                
+
         }
         #endregion
     }

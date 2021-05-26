@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GtLibHelper.GtLibClasses.NotImplementable
+﻿namespace GtLibHelper.GtLibClasses.NotImplementable
 {
     public class SeqInFileEnumerator : AbstractLibClass
     {
