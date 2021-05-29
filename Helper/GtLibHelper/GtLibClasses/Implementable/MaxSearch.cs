@@ -33,24 +33,3 @@
         }
     }
 }
-
-// template <typename Item, typename Value, typename Compare >
-// class MaxSearch : public Procedure<Item, Value, Compare>
-// {
-// protected:
-//     bool    _l;
-//     Item    _optelem;
-//     Value   _opt;
-//     Compare _better;
-
-//     void init() final override { _l = false;}
-//     void body(const Item& e) final override;
-
-//     virtual Value func(const Item& e) const = 0;
-//     virtual bool  cond(const Item& e) const { return true;}
-
-// public:
-//     bool found()   const { return _l;}
-//     Value opt()    const { return _opt;}
-//     Item optElem() const { return _optelem;}
-// };

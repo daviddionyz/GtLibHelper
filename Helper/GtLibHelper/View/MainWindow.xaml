@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GtLibHelper"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1000"  Width="1200"  >
+        Title="Helper" Height="1000"  Width="1200"  >
     <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -54,7 +54,7 @@
         </StackPanel>
         <!--Modifier buttons-->
         <StackPanel Grid.Row="3" Grid.Column="3">
-            <Button Height="30" Width="Auto" Content="Delete Class" Command="{Binding DeleteClassCommand}"/>
+            <Button Height="30" Width="Auto" Content="Delete class" Command="{Binding DeleteClassCommand}"/>
         </StackPanel>
         <!--Save and Run section-->
         <StackPanel VerticalAlignment="Bottom" Grid.Column="3" Grid.Row="4">
@@ -62,7 +62,7 @@
             <Button DockPanel.Dock="Bottom" Height="30" Name="Run" Content="Run" Command="{Binding RunCommand}"/>
         </StackPanel>
        
-            <!--Gt Lib Class showing part-->
+        <!--Gt Lib Class showing part-->
         <ListView x:Name="ListView" 
                   Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="1" 
                   ItemsSource="{Binding GtLibClassesObservable, Mode=TwoWay}"

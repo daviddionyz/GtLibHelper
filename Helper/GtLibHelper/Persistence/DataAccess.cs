@@ -35,16 +35,25 @@ namespace GtLibHelper.Persistence
                 //headers
                 writer.WriteLine(header);
                 writer.Flush();
-                //class content
+                //save structs
                 foreach (AbstractLibClass member in model.ListOfLibClasses)
                 {
-                    if (member.Type != "Main")
+                    if (member.Type != "Struct")
                     {
                         writer.WriteLine(member.Text);
                         writer.Flush();
                     }
                 }
-                //main
+                //save classes
+                foreach (AbstractLibClass member in model.ListOfLibClasses)
+                {
+                    if (member.Type != "Main" && member.Type != "Struct")
+                    {
+                        writer.WriteLine(member.Text);
+                        writer.Flush();
+                    }
+                }
+                //save main
                 foreach (AbstractLibClass member in model.ListOfLibClasses)
                 {
                     if (member.Type == "Main")
@@ -134,6 +143,7 @@ namespace GtLibHelper.Persistence
             }
         }
         #endregion
+
         #region Private methods
         /// <summary>
         /// It's helper method for saving project, save one class at time with it content
@@ -253,7 +263,7 @@ namespace GtLibHelper.Persistence
 
             string type = input[0].Replace("\r\n", "");
 
-            model.CreateNewLibClass("", type);
+            model.CreateNewLibClass(type);
 
             switch (type)
             {

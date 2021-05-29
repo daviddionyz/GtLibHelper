@@ -105,9 +105,7 @@ namespace GtLibHelper.ViewModel
         /// </summary>
         private void RefreshClassText()
         {
-
             _gtLibClassModel.RefreshLibClassData(ClassName, null, null, null, ClassText);
-            _gtLibClassModel.CurrentLibClass.RefreshText();
 
             ClassText = _gtLibClassModel.CurrentLibClass.Text;
         }

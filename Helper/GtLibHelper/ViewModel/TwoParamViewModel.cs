@@ -153,7 +153,6 @@ namespace GtLibHelper.ViewModel
         {
 
             _gtLibClassModel.RefreshLibClassData(ClassName, Item, T, null, ClassText);
-            _gtLibClassModel.CurrentLibClass.RefreshText();
 
             ClassText = _gtLibClassModel.CurrentLibClass.Text;
         }

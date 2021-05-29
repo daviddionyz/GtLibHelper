@@ -90,36 +90,35 @@ namespace GtLibHelper.Services
         /// <summary>
         /// Create a gtlib class and CurrentGtLibClass property will hold it
         /// </summary>
-        /// <param name="name">class name</param>
         /// <param name="type">class type</param>
         /// <returns>if class creation was success return true else false</returns>
-        public bool CreateNewLibClass(String name, String type)
+        public bool CreateNewLibClass(String type)
         {
             switch (type)
             {
                 case "Main":
-                    CurrentLibClass = new OwnMain(name);
+                    CurrentLibClass = new OwnMain("main");
                     break;
                 case "Struct":
-                    CurrentLibClass = new OwnStruct(name);
+                    CurrentLibClass = new OwnStruct("");
                     break;
                 case "Counting":
-                    CurrentLibClass = new Counting(name);
+                    CurrentLibClass = new Counting("");
                     break;
                 case "Enumerator":
-                    CurrentLibClass = new Enumerator(name);
+                    CurrentLibClass = new Enumerator("");
                     break;
                 case "LinSearch":
-                    CurrentLibClass = new LinSearch(name);
+                    CurrentLibClass = new LinSearch("");
                     break;
                 case "MaxSearch":
-                    CurrentLibClass = new MaxSearch(name);
+                    CurrentLibClass = new MaxSearch("");
                     break;
                 case "Selection":
-                    CurrentLibClass = new Selection(name);
+                    CurrentLibClass = new Selection("");
                     break;
-                case "Summnation":
-                    CurrentLibClass = new Summation(name);
+                case "Summation":
+                    CurrentLibClass = new Summation("");
                     break;
             }
 
@@ -204,6 +203,7 @@ namespace GtLibHelper.Services
 
                     break;
             }
+            CurrentLibClass.RefreshText();
         }
         /// <summary>
         /// Add current lib class to the list

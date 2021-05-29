@@ -121,7 +121,7 @@ namespace GtLibHelper.ViewModel
             EnumeratorCommand = new DelegateCommand(param => OnEnumeratorCreate());
             SelectionCommand = new DelegateCommand(param => OnSelectingCreate());
             CountingCommand = new DelegateCommand(param => OnCountingCreate());
-            SummnationCommand = new DelegateCommand(param => OnSummnationCreate());
+            SummnationCommand = new DelegateCommand(param => OnSummationCreate());
             LinSearchCommand = new DelegateCommand(param => OnLinSearchCreate());
             MaxSearchCommand = new DelegateCommand(param => OnMaxSearchCreate());
             StructCommand = new DelegateCommand(param => OnOwnStructCreate());
@@ -188,7 +188,7 @@ namespace GtLibHelper.ViewModel
         /// </summary>
         private void OnEnumeratorCreate()
         {
-            if (_gtLibClassModel.CreateNewLibClass("", "Enumerator"))
+            if (_gtLibClassModel.CreateNewLibClass("Enumerator"))
                 _openClassWindowService.OpenOneParamWindow(_gtLibClassModel);
         }
         /// <summary>
@@ -196,7 +196,7 @@ namespace GtLibHelper.ViewModel
         /// </summary>
         private void OnSelectingCreate()
         {
-            if (_gtLibClassModel.CreateNewLibClass("", "Selection"))
+            if (_gtLibClassModel.CreateNewLibClass( "Selection"))
                 _openClassWindowService.OpenOneParamWindow(_gtLibClassModel);
         }
         /// <summary>
@@ -204,15 +204,15 @@ namespace GtLibHelper.ViewModel
         /// </summary>
         private void OnCountingCreate()
         {
-            if (_gtLibClassModel.CreateNewLibClass("", "Counting"))
+            if (_gtLibClassModel.CreateNewLibClass("Counting"))
                 _openClassWindowService.OpenOneParamWindow(_gtLibClassModel);
         }
         /// <summary>
         /// Button click handel to create Summnation class
         /// </summary>
-        private void OnSummnationCreate()
+        private void OnSummationCreate()
         {
-            if (_gtLibClassModel.CreateNewLibClass("", "Summnation"))
+            if (_gtLibClassModel.CreateNewLibClass("Summation"))
                 _openClassWindowService.OpenTwoParamWindow(_gtLibClassModel);
         }
         /// <summary>
@@ -220,7 +220,7 @@ namespace GtLibHelper.ViewModel
         /// </summary>
         private void OnLinSearchCreate()
         {
-            if (_gtLibClassModel.CreateNewLibClass("", "LinSearch"))
+            if (_gtLibClassModel.CreateNewLibClass("LinSearch"))
                 _openClassWindowService.OpenTwoParamWindow(_gtLibClassModel);
         }
         /// <summary>
@@ -228,7 +228,7 @@ namespace GtLibHelper.ViewModel
         /// </summary>
         private void OnMaxSearchCreate()
         {
-            if (_gtLibClassModel.CreateNewLibClass("", "MaxSearch"))
+            if (_gtLibClassModel.CreateNewLibClass("MaxSearch"))
                 _openClassWindowService.OpenThreeParamWindow(_gtLibClassModel);
         }
         /// <summary>
@@ -236,7 +236,7 @@ namespace GtLibHelper.ViewModel
         /// </summary>
         private void OnOwnStructCreate()
         {
-            if (_gtLibClassModel.CreateNewLibClass("", "Struct"))
+            if (_gtLibClassModel.CreateNewLibClass("Struct"))
                 _openClassWindowService.OpenOwnStructWindow(_gtLibClassModel);
         }
         /// <summary>
@@ -246,15 +246,6 @@ namespace GtLibHelper.ViewModel
         private void OnAddEnumerator(String selectedEnumerator)
         {
             _openClassWindowService.OpenEnumeratorsWindow(_gtLibClassModel, selectedEnumerator);
-        }
-        /// <summary>
-        /// Create main function
-        /// </summary>
-        private void GenerateMainFunc()
-        {
-            _gtLibClassModel.CreateNewLibClass("main", "Main");
-            _gtLibClassModel.AddCurrentLibClass();
-
         }
         #endregion
 
@@ -379,9 +370,9 @@ namespace GtLibHelper.ViewModel
         }
         #endregion
 
-        #region Private methods
+        #region Methods
         /// <summary>
-        /// Managinjg drag and drop effect, the view call this method
+        /// Managing drag and drop effect, the view call this method
         /// </summary>
         /// <param name="source">source class name</param>
         /// <param name="destination">destination class name</param>
@@ -415,6 +406,15 @@ namespace GtLibHelper.ViewModel
             List<string> headears = new List<string>(Headers.Split("\r\n"));
             if (!headears.Contains(header))
                 Headers += header + "\r\n";
+
+        }
+        /// <summary>
+        /// Create main function
+        /// </summary>
+        private void GenerateMainFunc()
+        {
+            _gtLibClassModel.CreateNewLibClass("Main");
+            _gtLibClassModel.AddCurrentLibClass();
 
         }
         #endregion
